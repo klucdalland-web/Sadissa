@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
 /* ==============================
    VARIABLES CSS — SADISSA
    ============================== */
@@ -72,5 +74,43 @@
     --radius-xl: 18px;
     --radius-2xl: 24px;
 
+    /* ---------- Mise en page ---------- */
 
+    --container-max: 1200px;
+
+}
+
+/* ==============================
+   RESET / STYLES DE BASE
+   ============================== */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-primary);
+    color: var(--color-text);
+    background: var(--color-white);
+    line-height: 1.5;
+}
+
+img,
+svg {
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+}
+
+button {
+    font: inherit;
 }
