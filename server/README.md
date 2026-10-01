@@ -3,7 +3,7 @@
 Architecture Express MVC classique. Les fichiers métier sont vides : chaque développeur implémente dans les emplacements prévus.
 
 ## Arborescence
-
+###. npx prisma migrate dev --name init         
 ```
 server/
 ├── app.js                          → Config Express + montage des routes
