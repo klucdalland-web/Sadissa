@@ -2,9 +2,12 @@
    LAYOUT — SADISSA
    ============================== */
 
+
 /* ---------- Structure de page ---------- */
 
+
 /* Le footer reste en bas de l'écran, même sur une page courte */
+
 body {
     display: flex;
     flex-direction: column;
@@ -14,6 +17,7 @@ body {
 #app {
     flex: 1 0 auto;
 }
+
 
 /* ---------- Conteneur ---------- */
 
@@ -30,7 +34,9 @@ body {
     }
 }
 
+
 /* Texte masqué visuellement mais lu par les lecteurs d'écran */
+
 .sr-only {
     position: absolute;
     width: 1px;
@@ -42,6 +48,7 @@ body {
     white-space: nowrap;
     border: 0;
 }
+
 
 /* ---------- Boutons (partagés) ---------- */
 
@@ -84,6 +91,7 @@ body {
 .btn--outline:hover {
     background: var(--color-green-soft);
 }
+
 
 /* ---------- Header ---------- */
 
@@ -185,7 +193,9 @@ body {
     background: var(--color-background-soft);
 }
 
+
 /* Bouton burger : caché sur grand écran */
+
 .site-header__toggle {
     display: none;
     flex-direction: column;
@@ -222,6 +232,7 @@ body {
     transform: translateY(-7px) rotate(-45deg);
 }
 
+
 /* ---------- Header : mobile et tablette ---------- */
 
 @media (max-width: 900px) {
@@ -229,15 +240,12 @@ body {
         justify-content: space-between;
         height: 72px;
     }
-
     .site-header__logo-img {
         height: 48px;
     }
-
     .site-header__toggle {
         display: flex;
     }
-
     .site-header__menu {
         display: none;
         position: absolute;
@@ -254,40 +262,34 @@ body {
         border-bottom: 1px solid var(--color-border);
         box-shadow: var(--shadow-md);
     }
-
     .site-header.is-open .site-header__menu {
         display: flex;
     }
-
     .site-header__links {
         flex-direction: column;
         gap: 0;
     }
-
     .site-header__link {
         display: block;
         padding: 14px 0;
         border-bottom: 1px solid var(--color-border-light);
     }
-
     .site-header__link.is-active::after {
         display: none;
     }
-
     .site-header__actions {
         flex-direction: column;
         align-items: stretch;
         margin-left: 0;
     }
-
     .site-header__actions .btn {
         width: 100%;
     }
-
     .site-header__search {
         display: none;
     }
 }
+
 
 /* ---------- Footer ---------- */
 
@@ -305,7 +307,9 @@ body {
     padding-block: 56px 40px;
 }
 
+
 /* Marque : le logo est posé sur une pastille blanche pour rester lisible sur fond sombre */
+
 .site-footer__logo {
     display: inline-flex;
     padding: 8px 14px;
@@ -447,18 +451,19 @@ body {
     color: var(--color-orange);
 }
 
+
 /* ---------- Footer : tablette ---------- */
 
 @media (max-width: 1024px) {
     .site-footer__grid {
         grid-template-columns: repeat(3, 1fr);
     }
-
     .site-footer__brand,
     .site-footer__newsletter {
         grid-column: 1 / -1;
     }
 }
+
 
 /* ---------- Footer : mobile ---------- */
 
@@ -468,7 +473,6 @@ body {
         gap: 32px 24px;
         padding-block: 40px 32px;
     }
-
     .site-footer__bottom {
         flex-direction: column;
     }
