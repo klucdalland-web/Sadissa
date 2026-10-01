@@ -1,11 +1,264 @@
 /* ==============================
    LAYOUT — SADISSA
-   ==============================
+   ============================== */
 
-   Ce fichier contient la structure principale du site :
-   - conteneurs
-   - grille / colonnes
-   - header, nav, footer
-   - sections et espacements
-   - disposition générale des blocs
-*/
+/* ---------- Conteneur ---------- */
+
+.container {
+    width: 100%;
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding-inline: 20px;
+}
+
+@media (min-width: 768px) {
+    .container {
+        padding-inline: 32px;
+    }
+}
+
+/* ---------- Boutons (partagés) ---------- */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border: 1.5px solid transparent;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.2;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.btn:focus-visible {
+    outline: 3px solid var(--color-primary-light);
+    outline-offset: 2px;
+}
+
+.btn--primary {
+    background: var(--color-primary);
+    color: var(--color-white);
+}
+
+.btn--primary:hover {
+    background: var(--color-primary-dark);
+}
+
+.btn--outline {
+    background: var(--color-white);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+.btn--outline:hover {
+    background: var(--color-green-soft);
+}
+
+/* ---------- Header ---------- */
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--color-white);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.site-header__inner {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    height: 84px;
+}
+
+.site-header__logo {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-primary);
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.site-header__logo-img {
+    display: block;
+    width: auto;
+    height: 60px;
+}
+
+.site-header__menu {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    gap: 24px;
+}
+
+.site-header__links {
+    display: flex;
+    gap: 28px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.site-header__link {
+    position: relative;
+    padding: 8px 0;
+    color: var(--color-text);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.site-header__link:hover,
+.site-header__link.is-active {
+    color: var(--color-primary);
+}
+
+.site-header__link.is-active::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -4px;
+    left: 0;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--color-primary);
+}
+
+.site-header__actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: auto;
+}
+
+.site-header__search {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    border-radius: 50%;
+    background: none;
+    color: var(--color-text);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.site-header__search:hover {
+    background: var(--color-background-soft);
+}
+
+/* Bouton burger : caché sur grand écran */
+.site-header__toggle {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius-md);
+    background: none;
+    cursor: pointer;
+}
+
+.site-header__bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--color-text);
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.site-header.is-open .site-header__bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.site-header.is-open .site-header__bar:nth-child(2) {
+    opacity: 0;
+}
+
+.site-header.is-open .site-header__bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ---------- Header : mobile et tablette ---------- */
+
+@media (max-width: 900px) {
+    .site-header__inner {
+        justify-content: space-between;
+        height: 72px;
+    }
+
+    .site-header__logo-img {
+        height: 48px;
+    }
+
+    .site-header__toggle {
+        display: flex;
+    }
+
+    .site-header__menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+        max-height: calc(100vh - 72px);
+        padding: 8px 20px 24px;
+        overflow-y: auto;
+        background: var(--color-white);
+        border-bottom: 1px solid var(--color-border);
+        box-shadow: var(--shadow-md);
+    }
+
+    .site-header.is-open .site-header__menu {
+        display: flex;
+    }
+
+    .site-header__links {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .site-header__link {
+        display: block;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--color-border-light);
+    }
+
+    .site-header__link.is-active::after {
+        display: none;
+    }
+
+    .site-header__actions {
+        flex-direction: column;
+        align-items: stretch;
+        margin-left: 0;
+    }
+
+    .site-header__actions .btn {
+        width: 100%;
+    }
+
+    .site-header__search {
+        display: none;
+    }
+}
