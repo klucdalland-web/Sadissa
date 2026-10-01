@@ -1,45 +1,38 @@
 <!doctype html>
 <html lang="fr">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Campagnes – Sadissa</title>
     <link rel="stylesheet" href="../assets/css/pages/campagnes.css" />
-  </head>
-  <body>
+</head>
+
+<body>
     <main>
-      <section class="hero">
-        <h1 id="titre">Soutenez une cause près de chez vous</h1>
-        <p id="intro">Chaque don compte, à partir de 200 FCFA.</p>
+        <section class="hero">
+            <h1 id="titre">Soutenez une cause près de chez vous</h1>
+            <p id="intro">Chaque don compte, à partir de 200 FCFA.</p>
 
-        <form class="search" id="searchForm" role="search">
-          <label class="sr-only" for="q">Rechercher une campagne</label>
-          <input
-            id="q"
-            type="search"
-            placeholder="Rechercher une campagne ou un porteur"
-          />
-          <button class="btn btn-dark" type="submit">Rechercher</button>
-        </form>
+            <form class="search" id="searchForm" role="search">
+                <label class="sr-only" for="q">Rechercher une campagne</label>
+                <input id="q" type="search" placeholder="Rechercher une campagne ou un porteur" />
+                <button class="btn btn-dark" type="submit">Rechercher</button>
+            </form>
 
-        <div class="tabs" role="tablist" aria-label="Type de campagne">
-          <button role="tab" class="tab" data-type="don" aria-selected="true">
+            <div class="tabs" role="tablist" aria-label="Type de campagne">
+                <button role="tab" class="tab" data-type="don" aria-selected="true">
             Campagnes de don
           </button>
-          <button
-            role="tab"
-            class="tab"
-            data-type="recompense"
-            aria-selected="false"
-          >
+                <button role="tab" class="tab" data-type="recompense" aria-selected="false">
             Avec récompenses
           </button>
-        </div>
-      </section>
+            </div>
+        </section>
 
-      <section class="filters" aria-label="Filtres">
-        <div class="chips" id="chips"></div>
-        <label class="sort">
+        <section class="filters" aria-label="Filtres">
+            <div class="chips" id="chips"></div>
+            <label class="sort">
           <span class="sr-only">Trier par</span>
           <select id="sort">
             <option value="populaires">Plus populaires</option>
@@ -48,22 +41,20 @@
             <option value="progression">Plus avancées</option>
           </select>
         </label>
-      </section>
+        </section>
 
-      <p class="count" id="count" aria-live="polite"></p>
-      <section class="grid" id="grid" aria-live="polite"></section>
-      <nav class="pager" id="pager" aria-label="Pagination"></nav>
+        <p class="count" id="count" aria-live="polite"></p>
+        <section class="grid" id="grid" aria-live="polite"></section>
+        <nav class="pager" id="pager" aria-label="Pagination"></nav>
 
-      <section class="cta">
-        <div>
-          <h2>Vous avez un projet ou une cause à défendre ?</h2>
-          <p>
-            Créez votre campagne en quelques minutes et partagez-la par lien sur
-            WhatsApp ou Facebook.
-          </p>
-        </div>
-        <a class="btn btn-light" href="creer-campagne.html"
-          >Créer ma campagne</a
+        <section class="cta">
+            <div>
+                <h2>Vous avez un projet ou une cause à défendre ?</h2>
+                <p>
+                    Créez votre campagne en quelques minutes et partagez-la par lien sur WhatsApp ou Facebook.
+                </p>
+            </div>
+            <a class="btn btn-light" href="creer-campagne.html">Créer ma campagne</a
         >
       </section>
     </main>
