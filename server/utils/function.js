@@ -9,7 +9,7 @@ print = (...params) => {
 
 res = function(res, status, message, data) {
     return res.status(status).json({
-        status: status === 200,
+        status: status === (200 || 201 || 204 || 202),
         message,
         data
     });
