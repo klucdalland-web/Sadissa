@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#004028">
+    <meta name="description" content="Découvrez une campagne Sadissa, sa progression et ses contreparties.">
+
+    <title>Détail de la campagne | Sadissa</title>
+
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/layout.css">
+    <link rel="stylesheet" href="../assets/css/pages/campagne-detail.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" referrerpolicy="no-referrer">
+
+    <script type="module" src="../assets/js/pages/campagne-detail.js"></script>
+</head>
+
+<body>
+    <script type="module" src="../assets/js/main.js"></script>
+    <div id="app">
+
+        <main class="campaign-page" id="top">
+            <nav class="breadcrumbs" aria-label="Fil d'Ariane">
+                <a href="../index.html">Accueil</a>
+                <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                <a href="campagnes.html">Campagnes</a>
+                <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                <span aria-current="page">Détail</span>
+            </nav>
+
+            <div class="page-navigation">
+                <a class="back-link" href="campagnes.html">
+                    <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                    Retour aux campagnes
+                </a>
+                <span class="campaign-status" id="campaign-status">Chargement...</span>
+            </div>
+
+            <p id="page-status" class="page-status" role="status" aria-live="polite">
+                Chargement des informations de la campagne...
+            </p>
+
+            <section id="campaign-content" hidden>
+                <section class="campaign-hero" aria-labelledby="campaign-title">
+                    <div class="campaign-visual">
+                        <div class="campaign-cover" id="campaign-cover">
+                            <img id="campaign-image" alt="" hidden>
+                            <div class="cover-placeholder" id="cover-placeholder">
+                                <i class="fa-solid fa-seedling" aria-hidden="true"></i>
+                                <span>Ensemble, faisons grandir les initiatives africaines.</span>
+                            </div>
+                        </div>
+
+                        <div class="campaign-image-caption">
+                            <span id="campaign-category"></span>
+                            <span id="campaign-location"></span>
+                        </div>
+                    </div>
+
+                    <aside class="funding-card" aria-label="Progression du financement">
+                        <p class="eyebrow">SOUTENONS CE PROJET ENSEMBLE</p>
+                        <h1 id="campaign-title"></h1>
+                        <p id="campaign-summary" class="campaign-short-description"></p>
+
+                        <div class="funding-amounts">
+                            <div>
+                                <span class="field-label">Montant collecté</span>
+                                <strong id="campaign-raised"></strong>
+                            </div>
+                            <span id="campaign-percentage" class="funding-percentage"></span>
+                        </div>
+
+                        <div
+                            id="progress-track"
+                            class="progress-track"
+                            role="progressbar"
+                            aria-label="Progression du financement"
+                            aria-valuemin="0"
+                            aria-valuemax="100"
+                            aria-valuenow="0">
+                            <span id="progress-bar"></span>
+                        </div>
+
+                        <div class="funding-details">
+                            <span><i class="fa-solid fa-bullseye" aria-hidden="true"></i> Objectif</span>
+                            <strong id="campaign-goal"></strong>
+                        </div>
+
+                        <div class="funding-details">
+                            <span><i class="fa-solid fa-users" aria-hidden="true"></i> Contributions</span>
+                            <strong id="campaign-contributions"></strong>
+                        </div>
+
+                        <div class="funding-details">
+                            <span><i class="fa-regular fa-calendar" aria-hidden="true"></i> Date de clôture</span>
+                            <strong id="campaign-deadline"></strong>
+                        </div>
+
+                        <div class="campaign-actions">
+                            <a class="primary-button" id="contribute-button" href="#contribution">
+                                <i class="fa-solid fa-heart" aria-hidden="true"></i>
+                                Contribuer
+                            </a>
+
+                            <button class="secondary-button" id="share-button" type="button">
+                                <i class="fa-solid fa-share-nodes" aria-hidden="true"></i>
+                                Partager
+                            </button>
+                        </div>
+
+                        <p id="share-status" class="share-status" role="status" aria-live="polite"></p>
+                        <p class="funding-note">Chaque contribution aide à concrétiser une initiative.</p>
+                    </aside>
+                </section>
+
+                <section class="campaign-description-section" aria-labelledby="description-title">
+                    <article class="description-content">
+                        <p class="eyebrow">À PROPOS DU PROJET</p>
+                        <h2 id="description-title">Comprendre cette initiative</h2>
+                        <div id="campaign-description"></div>
+                    </article>
+
+                    <aside class="creator-card" aria-labelledby="creator-title">
+                        <p class="eyebrow">PORTEUR DU PROJET</p>
+                        <div class="creator-identity">
+                            <div class="creator-avatar" aria-hidden="true">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div>
+                                <h3 id="creator-title">Porteur du projet</h3>
+                                <p id="campaign-creator"></p>
+                            </div>
+                        </div>
+                        <p id="campaign-creator-bio"></p>
+                        <p class="creator-location" id="creator-location">
+                            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                            <span></span>
+                        </p>
+                    </aside>
+                </section>
+
+                <section class="rewards-section" id="rewards" aria-labelledby="rewards-title">
+                    <div class="section-heading">
+                        <div>
+                            <p class="eyebrow">CHOISISSEZ VOTRE CONTRIBUTION</p>
+                            <h2 id="rewards-title">Récompenses et contreparties</h2>
+                            <p>Choisissez un palier correspondant à votre contribution.</p>
+                        </div>
+                    </div>
+
+                    <div id="rewards-list" class="rewards-grid"></div>
+                    <p id="rewards-empty" class="empty-state" hidden>
+                        Aucune contrepartie n'est proposée pour cette campagne.
+                    </p>
+                </section>
+
+                <section class="contribution-section" id="contribution" aria-labelledby="contribution-title" hidden>
+                    <div class="section-heading">
+                        <div>
+                            <p class="eyebrow">VOTRE SOUTIEN COMPTE</p>
+                            <h2 id="contribution-title">Préparer ma contribution</h2>
+                            <p>Le montant du palier sélectionné sera repris ici.</p>
+                        </div>
+                    </div>
+
+                    <form id="contribution-form">
+                        <div class="form-field">
+                            <label for="contribution-amount">Montant (FCFA)</label>
+                            <input id="contribution-amount" name="amount" type="number" min="200" step="1" required inputmode="numeric">
+                        </div>
+
+                        <div class="form-field">
+                            <label for="contributor-name">Votre nom</label>
+                            <input id="contributor-name" name="name" type="text" autocomplete="name" required>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="contributor-email">Votre adresse e-mail</label>
+                            <input id="contributor-email" name="email" type="email" autocomplete="email" required>
+                        </div>
+
+                        <p id="contribution-status" role="status" aria-live="polite"></p>
+
+                        <button class="primary-button" type="submit">
+                            Continuer <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                        </button>
+
+                        <p class="funding-note">
+                            Cette interface ne réalise aucun paiement réel.
+                        </p>
+                    </form>
+                </section>
+            </section>
+
+            <section id="campaign-error" class="error-panel" role="alert" hidden>
+                <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
+                <h1>Campagne indisponible</h1>
+                <p id="error-message">Les informations de cette campagne ne sont pas disponibles.</p>
+                <a class="primary-button" href="campagnes.html">
+                    <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                    Retour aux campagnes
+                </a>
+            </section>
+        </main>
+
+
+        <button
+            class="back-to-top"
+            id="back-to-top"
+            type="button"
+            aria-label="Retour en haut de la page"
+            title="Retour en haut"
+            hidden>
+            <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+        </button>
+    </div>
+</body>
+</html>
