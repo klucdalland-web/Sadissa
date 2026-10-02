@@ -27,7 +27,7 @@ async function register(req, resp) {
         const email = String(data.email).trim().toLowerCase();
 
         const typeUser = await prisma.typeUser.findUnique({
-            where: { name: "donateur" },
+            where: { name: "porteur_campaign" },
             select: { id: true },
         });
         if (!typeUser) {
@@ -93,7 +93,7 @@ async function login(req, resp) {
 
 async function refresh(req, resp) {
     try {
-        const token = req.cookies ?.refresh_token;
+        const token = req.cookies ? req.cookies.refresh_token : null;
         if (!token) return res(resp, 401, "Session expirée", null);
 
         const session = await prisma.session.findUnique({
@@ -134,7 +134,7 @@ async function refresh(req, resp) {
 
 async function logout(req, resp) {
     try {
-        const token = req.cookies ?.refresh_token;
+        const token = req.cookies ? req.cookies.refresh_token : null;
         if (token) {
             await prisma.session.updateMany({
                 where: { refreshTokenHash: hashToken(token), revokedAt: null },
