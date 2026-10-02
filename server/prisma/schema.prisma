@@ -1,13 +1,69 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
+}
+
+model TypeUser {
+  id        Int       @id @default(autoincrement())
+  name      String    @unique
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  users User[]
+
+  @@map("type_users")
+}
+
+model TypePiece {
+  id        Int       @id @default(autoincrement())
+  name      String    @unique
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  users User[]
+
+  @@map("type_pieces")
+}
+
+model User {
+  id           Int       @id @default(autoincrement())
+  email        String    @unique
+  firstName String
+  lastName  String
+  
+  passwordHash String
+  numberPiece  String ?
+  typeUserId   Int
+  typePieceId  Int ?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  deletedAt    DateTime?
+
+  typeUser  TypeUser  @relation(fields: [typeUserId], references: [id])
+  typePiece TypePiece ?@relation(fields: [typePieceId], references: [id])
+  sessions  Session[]
+
+  @@unique([typePieceId, numberPiece])
+  @@index([typeUserId])
+  @@index([typePieceId])
+  @@map("users")
+}
+
+model Session {
+  id           String    @id @default(cuid())
+  userId       Int
+  refreshToken String    @unique
+  expiresAt    DateTime
+  createdAt    DateTime  @default(now())
+  revokedAt    DateTime?
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@map("sessions")
 }
