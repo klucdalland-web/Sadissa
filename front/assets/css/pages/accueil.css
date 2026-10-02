@@ -1,0 +1,448 @@
+/* ==============================
+   PAGE ACCUEIL — SADISSA
+   ============================== */
+
+/* ---------- Éléments communs à la page ---------- */
+
+.home-section {
+    padding-block: 64px;
+}
+
+.home-section--tight {
+    padding-block: 0 64px;
+}
+
+.section-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px 24px;
+    margin-bottom: 32px;
+}
+
+.section-title {
+    margin: 0 0 8px;
+    color: var(--color-text);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.section-subtitle {
+    margin: 0;
+    color: var(--color-text-secondary);
+}
+
+.link-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--color-primary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.link-arrow:hover {
+    text-decoration: underline;
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+    background: linear-gradient(180deg, var(--color-green-soft) 0%, var(--color-white) 100%);
+}
+
+.hero__inner {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    align-items: center;
+    gap: 48px;
+    padding-block: 56px 72px;
+}
+
+.hero__badge {
+    display: inline-flex;
+    align-items: center;
+    margin: 0;
+    padding: 6px 14px;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    background: var(--color-white);
+    color: var(--color-text-secondary);
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.hero__title {
+    margin: 20px 0 16px;
+    color: var(--color-text);
+    font-size: clamp(2rem, 4.5vw, 3.25rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+.hero__accent {
+    color: var(--color-primary-light);
+}
+
+.hero__text {
+    max-width: 520px;
+    margin: 0 0 28px;
+    color: var(--color-text-secondary);
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+.hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.hero__actions .btn {
+    padding: 14px 24px;
+}
+
+.hero__visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 320px;
+    overflow: hidden;
+    border-radius: var(--radius-2xl);
+    background: var(--color-green-light);
+}
+
+.hero__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ---------- Grille des cartes de campagne ---------- */
+
+.campaign-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+/* ---------- Carte de campagne ---------- */
+
+.campaign-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-xl);
+    background: var(--color-white);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.campaign-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.campaign-card__media {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    background: linear-gradient(135deg, var(--color-green-soft), var(--color-green-light));
+}
+
+.campaign-card--recompenses .campaign-card__media {
+    background: linear-gradient(135deg, var(--color-orange-soft), var(--color-orange-light));
+}
+
+.campaign-card__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.campaign-card__badge {
+    position: absolute;
+    bottom: -12px;
+    left: 16px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: var(--color-primary);
+    color: var(--color-white);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.campaign-card--recompenses .campaign-card__badge {
+    background: var(--color-orange);
+}
+
+.campaign-card__body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 14px;
+    padding: 24px 16px 16px;
+}
+
+.campaign-card__title {
+    margin: 0 0 4px;
+    color: var(--color-text);
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.campaign-card__category {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: 0.8rem;
+}
+
+.campaign-card__figures {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.campaign-card__amounts,
+.campaign-card__percent {
+    margin: 0;
+    color: var(--color-text-secondary);
+    font-size: 0.78rem;
+}
+
+.campaign-card__amounts strong {
+    color: var(--color-text);
+}
+
+.campaign-card__percent {
+    color: var(--color-text);
+    font-weight: 600;
+}
+
+.campaign-card__progress {
+    height: 6px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: var(--color-border-light);
+}
+
+.campaign-card__progress-fill {
+    height: 100%;
+    border-radius: inherit;
+    background: var(--color-primary);
+}
+
+.campaign-card--recompenses .campaign-card__progress-fill {
+    background: var(--color-orange);
+}
+
+.campaign-card__days {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: 0.8rem;
+}
+
+.campaign-card__cta {
+    width: 100%;
+    margin-top: auto;
+}
+
+/* ---------- Les deux formats ---------- */
+
+.formats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.format-card {
+    padding: 32px;
+    border-radius: var(--radius-2xl);
+}
+
+.format-card--don {
+    background: var(--color-green-soft);
+}
+
+.format-card--recompenses {
+    background: var(--color-orange-soft);
+}
+
+.format-card__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    margin-bottom: 20px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: var(--color-white);
+}
+
+.format-card--recompenses .format-card__icon {
+    background: var(--color-orange);
+}
+
+.format-card__title {
+    margin: 0 0 8px;
+    color: var(--color-text);
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.format-card__text {
+    max-width: 380px;
+    margin: 0 0 16px;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+}
+
+.format-card--recompenses .link-arrow {
+    color: var(--color-orange);
+}
+
+/* ---------- Comment ça marche ---------- */
+
+.how {
+    background: var(--color-background-soft);
+}
+
+.how__subtitle {
+    margin-bottom: 40px;
+}
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.step {
+    padding-inline: 32px;
+}
+
+.step:first-child {
+    padding-left: 0;
+}
+
+.step + .step {
+    border-left: 1px solid var(--color-border);
+}
+
+.step__head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+.step__number {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: var(--color-white);
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.step__icon {
+    color: var(--color-primary);
+}
+
+.step__title {
+    margin: 0 0 6px;
+    color: var(--color-text);
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.step__text {
+    margin: 0;
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* ---------- Tablette ---------- */
+
+@media (max-width: 1100px) {
+    .campaign-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .hero__inner {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding-block: 40px 48px;
+    }
+
+    .hero__visual {
+        min-height: 240px;
+    }
+
+    .formats {
+        grid-template-columns: 1fr;
+    }
+
+    .steps {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .step,
+    .step:first-child {
+        padding-inline: 0;
+    }
+
+    .step + .step {
+        padding-top: 32px;
+        border-top: 1px solid var(--color-border);
+        border-left: 0;
+    }
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 600px) {
+    .home-section {
+        padding-block: 48px;
+    }
+
+    .home-section--tight {
+        padding-block: 0 48px;
+    }
+
+    .campaign-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .format-card {
+        padding: 24px;
+    }
+
+    .hero__actions .btn {
+        width: 100%;
+    }
+}
