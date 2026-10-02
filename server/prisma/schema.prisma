@@ -55,14 +55,14 @@ model User {
 }
 
 model Session {
-  id           String    @id @default(cuid())
-  userId       Int
-  refreshToken String    @unique
-  expiresAt    DateTime
-  createdAt    DateTime  @default(now())
-  revokedAt    DateTime?
+  id               String    @id @default(cuid())
+  userId           Int
+  refreshTokenHash String    @unique
+  expiresAt        DateTime
+  createdAt        DateTime  @default(now())
+  revokedAt        DateTime?
 
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
   @@map("sessions")
