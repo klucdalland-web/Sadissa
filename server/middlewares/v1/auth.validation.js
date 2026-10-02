@@ -1,3 +1,4 @@
+const prisma = require("../../config/prisma");
 const { res } = require("../../utils/function");
 
 function validateRegisterData(data = {}) {
@@ -37,8 +38,13 @@ function validateRegisterData(data = {}) {
     errors.type_piece_id = "Type de pièce requis";
   } else {
     const typePieceId = Number(data.type_piece_id);
-    if (!Number.isInteger(typePieceId) || typePieceId < 1) {
-      errors.type_piece_id = "Type de pièce invalide";
+    // rejette "1.5", "abc", true, etc.
+    if (
+      !Number.isInteger(typePieceId) ||
+      typePieceId < 1 ||
+      String(data.type_piece_id).trim() !== String(typePieceId)
+    ) {
+      errors.type_piece_id = "Type de pièce doit être un nombre entier";
     }
   }
 
@@ -73,10 +79,34 @@ function hasErrors(errors) {
   return Object.keys(errors).length > 0;
 }
 
-function validateRegister(req, resp, next) {
+async function validateRegister(req, resp, next) {
   const errors = validateRegisterData(req.body);
   if (hasErrors(errors)) return res(resp, 400, "Données invalides", errors);
-  next();
+
+  const typePieceId = Number(req.body.type_piece_id);
+
+  try {
+    const typePiece = await prisma.typePiece.findFirst({
+      where: {
+        id: typePieceId,
+        deletedAt: null,
+      },
+      select: { id: true },
+    });
+
+    if (!typePiece) {
+      return res(resp, 400, "Données invalides", {
+        type_piece_id: "Type de pièce introuvable",
+      });
+    }
+
+    // normalise en nombre pour le controller
+    req.body.type_piece_id = typePieceId;
+    next();
+  } catch (error) {
+    console.error(error);
+    return res(resp, 500, "Erreur serveur", null);
+  }
 }
 
 function validateLogin(req, resp, next) {
