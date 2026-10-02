@@ -1,16 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
-var usersRouter = require('./users.route');
-var typepieceRouter = require('./typepiece.route');
-// var authRouter = require('./auth.route');
+var v1Router = require('./v1');
+// var v2Router = require('./v2');
 
-router.get('/', function (req, res) {
-  res.json({ message: 'Sadissa API v1' });
-});
-
-router.use('/users', usersRouter);
-router.use('/typepiece', typepieceRouter);
-// router.use('/auth', authRouter);
+router.use('/v1', v1Router);
+// router.use('/v2', v2Router);
 
 module.exports = router;
