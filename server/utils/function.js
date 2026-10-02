@@ -7,6 +7,15 @@ print = (...params) => {
     }
 };
 
+res = function(res, status, message, data) {
+    return res.status(status).json({
+        status: status === 200,
+        message,
+        data
+    });
+};
+
 module.exports = {
-    print
+    print,
+    res
 };
