@@ -1,65 +1,164 @@
-# Sadissa — Backend (MVC)
+# Sadissa — Backend API
 
-Architecture Express MVC classique. Les fichiers métier sont vides : chaque développeur implémente dans les emplacements prévus.
+Ce backend expose une API REST en Node.js / Express et utilise Prisma avec PostgreSQL pour gérer les données de la plateforme Sadissa.
 
-## Arborescence
+## Stack technique
 
-```
+- Node.js
+- Express
+- Prisma ORM
+- PostgreSQL
+- JWT / cookies pour l’authentification
+- structure MVC légère
+
+## Structure actuelle
+
+```bash
 server/
-├── app.js                          → Config Express + montage des routes
-├── bin/www                         → Démarrage du serveur
-├── models/                         → Accès données / schéma
-│   └── campaign.js                 → Modèle exemple (à dupliquer)
-├── controllers/                    → Logique métier
-│   └── campaignController.js       → Contrôleur exemple (à dupliquer)
-├── routes/                         → Définition des endpoints
+├── app.js                          → Configuration Express + middlewares globaux
+├── bin/
+│   └── www                        → Point d’entrée du serveur
+├── config/                        → Configuration globale du projet
+├── controllers/                   → Logique métier des routes
+│   ├── auth.controller.js
+│   ├── campaignController.js
+│   ├── type.piece.controller.js
+│   └── user.controller.js
+├── middlewares/
+│   ├── apiKey.js
+│   └── v1/
+│       └── auth.validation.js
+├── prisma/
+│   ├── schema.prisma
+│   ├── seed.js
+│   └── migrations/
+├── routes/
 │   ├── index.js
-│   ├── users.js
-│   └── campaigns.js                → Route modèle (à dupliquer)
-├── views/                          → Templates (Jade)
-├── middlewares/                    → Middlewares partagés
-└── public/                         → Fichiers statiques
+│   ├── v1/
+│   │   ├── index.js
+│   │   ├── auth.route.js
+│   │   ├── typepiece.route.js
+│   │   └── users.route.js
+│   └── v2/
+├── utils/
+│   ├── function.js
+│   └── token.js
+├── views/                         → Templates Jade de base
+├── public/                        → Fichiers statiques
+├── .env                           → Variables d’environnement
+├── package.json
+├── README.md
+└── prisma7.config.ts
 ```
 
-## Convention MVC
+## Architecture
 
-| Couche | Rôle | Exemple |
-|--------|------|---------|
-| `routes/` | URL → appelle le contrôleur | `routes/campaigns.js` |
-| `controllers/` | Logique, orchestre le modèle | `controllers/campaignController.js` |
-| `models/` | Données / persistance | `models/campaign.js` |
-| `views/` | Rendu HTML (si besoin) | `views/` |
-| `middlewares/` | Auth, validation, etc. | `middlewares/` |
+Le backend suit une logique MVC simplifiée :
 
-**Flux :** `Request → Route → Controller → Model → Controller → Response`
+- `routes/` : définition des endpoints HTTP
+- `controllers/` : traitement métier et appels Prisma
+- `middlewares/` : validation, sécurité, API key, auth
+- `utils/` : fonctions utilitaires
+- `prisma/schema.prisma` : schéma SQL / ORM
 
-## Route modèle
+Flux principal :
 
-`campaigns` est le trio de référence. Pour une nouvelle ressource, dupliquer ces 3 fichiers :
+`Request → Route → Middleware → Controller → Prisma → Réponse`
 
-1. `routes/<ressource>.js`
-2. `controllers/<ressource>Controller.js`
-3. `models/<ressource>.js`
+## API actuelle
 
-Puis monter la route dans `app.js` :
+Le serveur expose une base API sous le préfixe `/api` puis une version `/v1`.
 
-```js
-var campaignsRouter = require('./routes/campaigns');
-app.use('/campaigns', campaignsRouter);
-```
+Exemples de routes :
 
-## Alignement avec le front
+- `GET /api/v1/`
+- `GET /api/v1/users`
+- `GET /api/v1/users/type_user`
+- `GET /api/v1/typepiece`
+- `POST /api/v1/auth/register`
+- `POST /api/v1/auth/login`
 
-| Front | Backend (ressource typique) |
-|-------|-----------------------------|
-| Accueil | `index` |
-| Découvrir / Créer campagne | `campaigns` |
-| Dashboard | `campaigns` + `users` |
-| Lancer un projet | à définir (ex. `projects`) |
+## Authentification
 
-## Lancer
+Le backend gère :
+
+- inscription
+- connexion
+- refresh de session
+- logout
+- récupération du profil connecté
+
+La logique est centralisée dans :
+
+- `controllers/auth.controller.js`
+- `middlewares/v1/auth.validation.js`
+- `utils/token.js`
+
+## Validation et sécurité
+
+Le projet utilise :
+
+- validation des champs de formulaire dans les middlewares
+- contrôle API key via `middlewares/apiKey.js`
+- cookies HTTP pour stocker les tokens de session
+- hachage des mots de passe avec BCrypt
+
+## Base de données
+
+Le schéma Prisma est dans :
+
+- `prisma/schema.prisma`
+
+Les migrations sont dans :
+
+- `prisma/migrations/`
+
+Pour appliquer ou recréer la base :
 
 ```bash
 cd server
+npx prisma migrate dev --name <nom_de_migration>
+```
+
+Ou pour repartir proprement en local :
+
+```bash
+cd server
+npx prisma migrate reset
+```
+
+## Lancer le backend
+
+Depuis le dossier `server` :
+
+```bash
+cd server
+npm install
 npm start
 ```
+
+Le serveur démarre avec le script défini dans `package.json`.
+
+## Variables d’environnement
+
+Le projet attend une configuration `.env` avec notamment :
+
+```env
+NODE_ENV=development
+PORT=3000
+DATABASE_URL=...
+DIRECT_URL=...
+API_KEY=...
+```
+
+## À retenir
+
+Le backend n’est pas encore complètement finalisé, mais il suit bien une architecture API REST moderne avec :
+
+- routes versionnées
+- contrôleurs séparés
+- Prisma pour la persistence
+- middlewares pour validation/sécurité
+- auth par session + cookies
+
+C’est donc un backend fonctionnel en cours de construction, pas un simple squelette vide.
