@@ -99,6 +99,7 @@ Cookies posés au login / register :
 - `GET /api/v1/users`
 - `GET /api/v1/users/type_user`
 - `GET /api/v1/typepiece`
+- `GET /api/v1/campaigns` — liste statique de campagnes (données mock)
 
 ## Structure
 
