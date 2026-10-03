@@ -1,143 +1,50 @@
-# Sadissa — Backend API
+# Sadissa
 
-API REST en Node.js / Express, Prisma et PostgreSQL. Le serveur sert aussi les fichiers du dossier `front/` pour que le site et l’API partagent la même origine.
+Sadissa est une plateforme de crowdfunding permettant aux porteurs de projets de créer des campagnes et aux contributeurs de les soutenir. La plateforme propose deux modèles de financement : le don libre et le financement avec récompenses.
 
-## Stack
+## Structure du dépôt
 
-- Node.js / Express
-- Prisma + PostgreSQL
-- JWT + cookies httpOnly (session)
-- CORS (credentials)
-- API key (`x-api-key`)
+```text
+Sadissa/
+├── front/      → Interface (HTML / CSS / JS vanilla)
+├── server/     → API REST (Node.js / Express / Prisma)
+└── README.md
+```
 
-## Lancer le serveur
+## Démarrage rapide
+
+Le serveur Express expose **à la fois** l’API et le front (même origine → cookies de session OK).
 
 ```bash
 cd server
+cp .env.example .env   # si besoin, puis renseigner les valeurs
 npm install
 npm start
 ```
 
-Par défaut : `http://localhost:3000`
-
-| URL | Contenu |
-|-----|---------|
-| `http://localhost:3000/` | Front (pages HTML) |
-| `http://localhost:3000/api/v1/` | API versionnée |
-
-Le front est monté via `express.static('../front')` dans `app.js`.
-
-## Variables d’environnement
-
-Fichier `server/.env` (voir `.env.example`) :
-
-```env
-NODE_ENV=development
-PORT=3000
-DATABASE_URL=...
-DIRECT_URL=...
-API_KEY=sadissa-v1-secret-key
-JWT_SECRET=...
-```
-
-Toutes les routes `/api/v1/*` exigent l’en-tête :
-
-```http
-x-api-key: <API_KEY>
-```
-
-## Authentification
-
-Cookies posés au login / register :
-
-| Cookie | Durée | Rôle |
-|--------|-------|------|
-| `access_token` | 15 min | Accès aux routes protégées |
-| `refresh_token` | 30 jours | Renouvellement de session (`path=/api/v1/auth`) |
-
-### Endpoints
-
-| Méthode | Route | Auth | Description |
-|---------|-------|------|-------------|
-| `POST` | `/api/v1/auth/register` | API key | Inscription + cookies |
-| `POST` | `/api/v1/auth/login` | API key | Connexion + cookies |
-| `POST` | `/api/v1/auth/refresh` | cookie `refresh_token` | Nouveau couple de tokens |
-| `POST` | `/api/v1/auth/logout` | cookie `refresh_token` | Révoque la session |
-| `GET` | `/api/v1/auth/me` | cookie `access_token` | Profil connecté |
-
-### Corps attendus
-
-**Register**
-
-```json
-{
-  "email": "user@exemple.com",
-  "password": "motdepasse",
-  "password_confirmation": "motdepasse",
-  "firstname": "Ada",
-  "lastname": "Lovelace",
-  "type_piece_id": 1,
-  "number_piece": "A1234567"
-}
-```
-
-**Login**
-
-```json
-{
-  "email": "user@exemple.com",
-  "password": "motdepasse",
-  "password_confirmation": "motdepasse"
-}
-```
-
-> Le front envoie `password_confirmation` égal au mot de passe à la connexion (requis par la validation actuelle).
-
-### Autres routes v1
-
-- `GET /api/v1/`
-- `GET /api/v1/users`
-- `GET /api/v1/users/type_user`
-- `GET /api/v1/typepiece`
-- `GET /api/v1/campaigns` — liste statique de campagnes (données mock)
-
-## Structure
+Puis ouvrir :
 
 ```text
-server/
-├── app.js                 → Express, CORS, static front, /api
-├── bin/www                → démarrage
-├── config/
-├── controllers/
-│   └── auth.controller.js
-├── middlewares/
-│   ├── apiKey.js          → ignore OPTIONS ; vérifie x-api-key
-│   └── v1/
-│       ├── auth.middleware.js
-│       └── auth.validation.js
-├── prisma/
-├── routes/v1/
-│   └── auth.route.js
-└── utils/token.js         → JWT + cookies
+http://localhost:3000/
+http://localhost:3000/pages/login.html
+http://localhost:3000/pages/register.html
 ```
 
-Flux : `Request → CORS → Route → Middleware → Controller → Prisma → Réponse`
+> **Important :** ne pas ouvrir le front via `file://`, Live Server ou un autre port. Les cookies d’auth ne fonctionnent correctement que sur `http://localhost:3000`.
 
-## Base de données
+## Authentification (résumé)
 
-```bash
-cd server
-npx prisma migrate dev --name <nom>
-# ou
-npx prisma migrate reset
-npx prisma db seed
-```
+| Action | Endpoint | Effet UI |
+|--------|----------|----------|
+| Inscription | `POST /api/v1/auth/register` | Cookies de session + redirection |
+| Connexion | `POST /api/v1/auth/login` | Cookies de session + redirection |
+| Profil | `GET /api/v1/auth/me` | Header : « Bonjour » + **Se déconnecter** |
+| Refresh | `POST /api/v1/auth/refresh` | Renouvelle automatiquement l’access token |
+| Déconnexion | `POST /api/v1/auth/logout` | Header : **Se connecter** / **Créer un compte** |
 
-## Sécurité
+Toutes les routes `/api/v1/*` exigent l’en-tête `x-api-key` (valeur = `API_KEY` du `.env`).
 
-- validation des champs (register / login)
-- API key obligatoire sur `/api/v1`
-- mots de passe hashés (bcrypt)
-- tokens en cookies httpOnly (`sameSite: lax`)
-- refresh token rotation (ancien token révoqué à chaque refresh)
-- CORS avec `credentials: true` pour le front
+## Documentation détaillée
+
+- Front : [`front/README.md`](front/README.md)
+- Backend : [`server/README.md`](server/README.md)
