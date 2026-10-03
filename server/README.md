@@ -1,135 +1,16 @@
 # Sadissa — Backend API
 
-Ce backend expose une API REST en Node.js / Express et utilise Prisma avec PostgreSQL pour gérer les données de la plateforme Sadissa.
+API REST en Node.js / Express, Prisma et PostgreSQL. Le serveur sert aussi les fichiers du dossier `front/` pour que le site et l’API partagent la même origine.
 
-## Stack technique
+## Stack
 
-- Node.js
-- Express
-- Prisma ORM
-- PostgreSQL
-- JWT / cookies pour l’authentification
-- structure MVC légère
+- Node.js / Express
+- Prisma + PostgreSQL
+- JWT + cookies httpOnly (session)
+- CORS (credentials)
+- API key (`x-api-key`)
 
-## Structure actuelle
-
-```bash
-server/
-├── app.js                          → Configuration Express + middlewares globaux
-├── bin/
-│   └── www                        → Point d’entrée du serveur
-├── config/                        → Configuration globale du projet
-├── controllers/                   → Logique métier des routes
-│   ├── auth.controller.js
-│   ├── campaignController.js
-│   ├── type.piece.controller.js
-│   └── user.controller.js
-├── middlewares/
-│   ├── apiKey.js
-│   └── v1/
-│       └── auth.validation.js
-├── prisma/
-│   ├── schema.prisma
-│   ├── seed.js
-│   └── migrations/
-├── routes/
-│   ├── index.js
-│   ├── v1/
-│   │   ├── index.js
-│   │   ├── auth.route.js
-│   │   ├── typepiece.route.js
-│   │   └── users.route.js
-│   └── v2/
-├── utils/
-│   ├── function.js
-│   └── token.js
-├── views/                         → Templates Jade de base
-├── public/                        → Fichiers statiques
-├── .env                           → Variables d’environnement
-├── package.json
-├── README.md
-└── prisma7.config.ts
-```
-
-## Architecture
-
-Le backend suit une logique MVC simplifiée :
-
-- `routes/` : définition des endpoints HTTP
-- `controllers/` : traitement métier et appels Prisma
-- `middlewares/` : validation, sécurité, API key, auth
-- `utils/` : fonctions utilitaires
-- `prisma/schema.prisma` : schéma SQL / ORM
-
-Flux principal :
-
-`Request → Route → Middleware → Controller → Prisma → Réponse`
-
-## API actuelle
-
-Le serveur expose une base API sous le préfixe `/api` puis une version `/v1`.
-
-Exemples de routes :
-
-- `GET /api/v1/`
-- `GET /api/v1/users`
-- `GET /api/v1/users/type_user`
-- `GET /api/v1/typepiece`
-- `POST /api/v1/auth/register`
-- `POST /api/v1/auth/login`
-
-## Authentification
-
-Le backend gère :
-
-- inscription
-- connexion
-- refresh de session
-- logout
-- récupération du profil connecté
-
-La logique est centralisée dans :
-
-- `controllers/auth.controller.js`
-- `middlewares/v1/auth.validation.js`
-- `utils/token.js`
-
-## Validation et sécurité
-
-Le projet utilise :
-
-- validation des champs de formulaire dans les middlewares
-- contrôle API key via `middlewares/apiKey.js`
-- cookies HTTP pour stocker les tokens de session
-- hachage des mots de passe avec BCrypt
-
-## Base de données
-
-Le schéma Prisma est dans :
-
-- `prisma/schema.prisma`
-
-Les migrations sont dans :
-
-- `prisma/migrations/`
-
-Pour appliquer ou recréer la base :
-
-```bash
-cd server
-npx prisma migrate dev --name <nom_de_migration>
-```
-
-Ou pour repartir proprement en local :
-
-```bash
-cd server
-npx prisma migrate reset
-```
-
-## Lancer le backend
-
-Depuis le dossier `server` :
+## Lancer le serveur
 
 ```bash
 cd server
@@ -137,28 +18,125 @@ npm install
 npm start
 ```
 
-Le serveur démarre avec le script défini dans `package.json`.
+Par défaut : `http://localhost:3000`
+
+| URL | Contenu |
+|-----|---------|
+| `http://localhost:3000/` | Front (pages HTML) |
+| `http://localhost:3000/api/v1/` | API versionnée |
+
+Le front est monté via `express.static('../front')` dans `app.js`.
 
 ## Variables d’environnement
 
-Le projet attend une configuration `.env` avec notamment :
+Fichier `server/.env` (voir `.env.example`) :
 
 ```env
 NODE_ENV=development
 PORT=3000
 DATABASE_URL=...
 DIRECT_URL=...
-API_KEY=...
+API_KEY=sadissa-v1-secret-key
+JWT_SECRET=...
 ```
 
-## À retenir
+Toutes les routes `/api/v1/*` exigent l’en-tête :
 
-Le backend n’est pas encore complètement finalisé, mais il suit bien une architecture API REST moderne avec :
+```http
+x-api-key: <API_KEY>
+```
 
-- routes versionnées
-- contrôleurs séparés
-- Prisma pour la persistence
-- middlewares pour validation/sécurité
-- auth par session + cookies
+## Authentification
 
-C’est donc un backend fonctionnel en cours de construction, pas un simple squelette vide.
+Cookies posés au login / register :
+
+| Cookie | Durée | Rôle |
+|--------|-------|------|
+| `access_token` | 15 min | Accès aux routes protégées |
+| `refresh_token` | 30 jours | Renouvellement de session (`path=/api/v1/auth`) |
+
+### Endpoints
+
+| Méthode | Route | Auth | Description |
+|---------|-------|------|-------------|
+| `POST` | `/api/v1/auth/register` | API key | Inscription + cookies |
+| `POST` | `/api/v1/auth/login` | API key | Connexion + cookies |
+| `POST` | `/api/v1/auth/refresh` | cookie `refresh_token` | Nouveau couple de tokens |
+| `POST` | `/api/v1/auth/logout` | cookie `refresh_token` | Révoque la session |
+| `GET` | `/api/v1/auth/me` | cookie `access_token` | Profil connecté |
+
+### Corps attendus
+
+**Register**
+
+```json
+{
+  "email": "user@exemple.com",
+  "password": "motdepasse",
+  "password_confirmation": "motdepasse",
+  "firstname": "Ada",
+  "lastname": "Lovelace",
+  "type_piece_id": 1,
+  "number_piece": "A1234567"
+}
+```
+
+**Login**
+
+```json
+{
+  "email": "user@exemple.com",
+  "password": "motdepasse",
+  "password_confirmation": "motdepasse"
+}
+```
+
+> Le front envoie `password_confirmation` égal au mot de passe à la connexion (requis par la validation actuelle).
+
+### Autres routes v1
+
+- `GET /api/v1/`
+- `GET /api/v1/users`
+- `GET /api/v1/users/type_user`
+- `GET /api/v1/typepiece`
+
+## Structure
+
+```text
+server/
+├── app.js                 → Express, CORS, static front, /api
+├── bin/www                → démarrage
+├── config/
+├── controllers/
+│   └── auth.controller.js
+├── middlewares/
+│   ├── apiKey.js          → ignore OPTIONS ; vérifie x-api-key
+│   └── v1/
+│       ├── auth.middleware.js
+│       └── auth.validation.js
+├── prisma/
+├── routes/v1/
+│   └── auth.route.js
+└── utils/token.js         → JWT + cookies
+```
+
+Flux : `Request → CORS → Route → Middleware → Controller → Prisma → Réponse`
+
+## Base de données
+
+```bash
+cd server
+npx prisma migrate dev --name <nom>
+# ou
+npx prisma migrate reset
+npx prisma db seed
+```
+
+## Sécurité
+
+- validation des champs (register / login)
+- API key obligatoire sur `/api/v1`
+- mots de passe hashés (bcrypt)
+- tokens en cookies httpOnly (`sameSite: lax`)
+- refresh token rotation (ancien token révoqué à chaque refresh)
+- CORS avec `credentials: true` pour le front

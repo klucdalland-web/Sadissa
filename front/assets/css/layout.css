@@ -175,6 +175,23 @@ body {
     margin-left: auto;
 }
 
+.site-header__auth {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.site-header__user {
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.site-header__user strong {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
 .site-header__search {
     display: inline-flex;
     align-items: center;
@@ -282,8 +299,17 @@ body {
         align-items: stretch;
         margin-left: 0;
     }
-    .site-header__actions .btn {
+    .site-header__auth {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .site-header__actions .btn,
+    .site-header__auth .btn {
         width: 100%;
+    }
+    .site-header__user {
+        padding: 8px 0;
+        white-space: normal;
     }
     .site-header__search {
         display: none;
