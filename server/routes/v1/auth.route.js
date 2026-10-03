@@ -10,7 +10,8 @@ var { requireAuth } = require('../../middlewares/v1/auth.middleware');
 
 router.post('/register', validateRegister, authController.register);
 router.post('/login', validateLogin, authController.login);
-router.post('/refresh', requireAuth, authController.refresh);
-router.post('/logout', requireAuth, authController.logout);
+// refresh / logout s'appuient sur le cookie refresh_token, pas sur l'access_token
+router.post('/refresh', authController.refresh);
+router.post('/logout', authController.logout);
 router.get('/me', requireAuth, authController.me);
 module.exports = router;

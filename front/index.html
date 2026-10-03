@@ -4,16 +4,193 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sadissa</title>
+    <meta name="description" content="Sadissa, plateforme de financement participatif : soutenez des projets ou lancez votre campagne." />
+    <title>Sadissa | Donnez vie aux projets qui comptent</title>
     <link rel="stylesheet" href="assets/css/base.css" />
     <link rel="stylesheet" href="assets/css/layout.css" />
     <link rel="stylesheet" href="assets/css/pages/accueil.css" />
 </head>
 
 <body>
-    <div id="app"></div>
+    <main id="app">
+
+        <!-- ========== Hero ========== -->
+        <section class="hero">
+            <div class="container hero__inner">
+                <div class="hero__content">
+                    <p class="hero__badge">Ensemble, on va plus loin</p>
+                    <h1 class="hero__title">
+                        Donnez vie aux projets
+                        <span class="hero__accent">qui comptent.</span>
+                    </h1>
+                    <p class="hero__text">
+                        Découvrez des projets, soutenez-les et participez à leur réalisation.
+                        Sadissa est une plateforme de financement participatif qui connecte
+                        les porteurs de projets à une communauté engagée.
+                    </p>
+                    <div class="hero__actions">
+                        <a class="btn btn--primary" href="pages/campagnes.html">
+                            Découvrir les campagnes
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <line x1="5" y1="12" x2="19" y2="12" />
+                                <polyline points="12 5 19 12 12 19" />
+                            </svg>
+                        </a>
+                        <a class="btn btn--outline" href="pages/creer-campagne.html">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                 stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                                <line x1="12" y1="5" x2="12" y2="19" />
+                                <line x1="5" y1="12" x2="19" y2="12" />
+                            </svg>
+                            Créer une campagne
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Illustration : déposer le fichier dans assets/img/hero.png -->
+                <div class="hero__visual">
+                    <img class="hero__image" src="assets/img/hero.png" alt="" />
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== Campagnes à découvrir ========== -->
+        <section class="home-section">
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <h2 class="section-title">Campagnes à découvrir</h2>
+                        <p class="section-subtitle">Des projets inspirants, portés par des personnes comme vous.</p>
+                    </div>
+                    <a class="link-arrow" href="pages/campagnes.html">
+                        Voir toutes les campagnes
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                            <polyline points="12 5 19 12 12 19" />
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Rempli par assets/js/pages/accueil.js -->
+                <div class="campaign-grid" id="campaigns-grid"></div>
+            </div>
+        </section>
+
+        <!-- ========== Les deux formats ========== -->
+        <section class="home-section home-section--tight">
+            <div class="container formats">
+                <article class="format-card format-card--don">
+                    <span class="format-card__icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                        </svg>
+                    </span>
+                    <h3 class="format-card__title">Campagnes de dons</h3>
+                    <p class="format-card__text">
+                        Soutenez des projets qui vous tiennent à cœur en faisant un don, quel que soit le montant.
+                    </p>
+                    <a class="link-arrow" href="pages/campagnes.html">
+                        Découvrir les dons
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                            <polyline points="12 5 19 12 12 19" />
+                        </svg>
+                    </a>
+                </article>
+
+                <article class="format-card format-card--recompenses">
+                    <span class="format-card__icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <polyline points="20 12 20 22 4 22 4 12" />
+                            <rect x="2" y="7" width="20" height="5" />
+                            <line x1="12" y1="22" x2="12" y2="7" />
+                            <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z" />
+                            <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z" />
+                        </svg>
+                    </span>
+                    <h3 class="format-card__title">Campagnes avec récompenses</h3>
+                    <p class="format-card__text">
+                        Contribuez et recevez des récompenses exclusives en fonction de votre soutien.
+                    </p>
+                    <a class="link-arrow" href="pages/campagnes.html">
+                        Découvrir les récompenses
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                            <polyline points="12 5 19 12 12 19" />
+                        </svg>
+                    </a>
+                </article>
+            </div>
+        </section>
+
+        <!-- ========== Comment ça marche ========== -->
+        <section class="home-section how">
+            <div class="container">
+                <h2 class="section-title">Comment ça marche ?</h2>
+                <p class="section-subtitle how__subtitle">
+                    En quelques étapes simples, donnez vie aux projets qui comptent.
+                </p>
+
+                <ol class="steps">
+                    <li class="step">
+                        <div class="step__head">
+                            <span class="step__number">1</span>
+                            <svg class="step__icon" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                                 stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                <polyline points="14 2 14 8 20 8" />
+                                <line x1="16" y1="13" x2="8" y2="13" />
+                                <line x1="16" y1="17" x2="8" y2="17" />
+                            </svg>
+                        </div>
+                        <h3 class="step__title">Créez votre campagne</h3>
+                        <p class="step__text">Présentez votre projet et définissez votre objectif.</p>
+                    </li>
+
+                    <li class="step">
+                        <div class="step__head">
+                            <span class="step__number">2</span>
+                            <svg class="step__icon" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                                 stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <circle cx="18" cy="5" r="3" />
+                                <circle cx="6" cy="12" r="3" />
+                                <circle cx="18" cy="19" r="3" />
+                                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+                                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+                            </svg>
+                        </div>
+                        <h3 class="step__title">Partagez votre projet</h3>
+                        <p class="step__text">Faites connaître votre campagne à votre communauté.</p>
+                    </li>
+
+                    <li class="step">
+                        <div class="step__head">
+                            <span class="step__number">3</span>
+                            <svg class="step__icon" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                                 stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                                <circle cx="9" cy="7" r="4" />
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                            </svg>
+                        </div>
+                        <h3 class="step__title">Recevez des contributions</h3>
+                        <p class="step__text">Votre projet prend vie grâce au soutien de la communauté.</p>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+    </main>
 
     <script type="module" src="assets/js/main.js"></script>
+    <script type="module" src="assets/js/pages/accueil.js"></script>
 </body>
 
 </html>
