@@ -50,6 +50,10 @@
     --radius-2xl: 24px;
     /* ---------- Mise en page ---------- */
     --container-max: 1200px;
+<<<<<<< HEAD
+=======
+    --container-max: 1900px;
+>>>>>>> origin/develop
 }
 
 

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Sadissa — Backend API
 
 Ce backend expose une API REST en Node.js / Express et utilise Prisma avec PostgreSQL pour gérer les données de la plateforme Sadissa.
@@ -133,10 +134,33 @@ Depuis le dossier `server` :
 
 ```bash
 cd server
+=======
+# Sadissa
+
+Sadissa est une plateforme de crowdfunding permettant aux porteurs de projets de créer des campagnes et aux contributeurs de les soutenir. La plateforme propose deux modèles de financement : le don libre et le financement avec récompenses.
+
+## Structure du dépôt
+
+```text
+Sadissa/
+├── front/      → Interface (HTML / CSS / JS vanilla)
+├── server/     → API REST (Node.js / Express / Prisma)
+└── README.md
+```
+
+## Démarrage rapide
+
+Le serveur Express expose **à la fois** l’API et le front (même origine → cookies de session OK).
+
+```bash
+cd server
+cp .env.example .env   # si besoin, puis renseigner les valeurs
+>>>>>>> origin/develop
 npm install
 npm start
 ```
 
+<<<<<<< HEAD
 Le serveur démarre avec le script défini dans `package.json`.
 
 ## Variables d’environnement
@@ -162,3 +186,31 @@ Le backend n’est pas encore complètement finalisé, mais il suit bien une arc
 - auth par session + cookies
 
 C’est donc un backend fonctionnel en cours de construction, pas un simple squelette vide.
+=======
+Puis ouvrir :
+
+```text
+http://localhost:3000/
+http://localhost:3000/pages/login.html
+http://localhost:3000/pages/register.html
+```
+
+> **Important :** ne pas ouvrir le front via `file://`, Live Server ou un autre port. Les cookies d’auth ne fonctionnent correctement que sur `http://localhost:3000`.
+
+## Authentification (résumé)
+
+| Action | Endpoint | Effet UI |
+|--------|----------|----------|
+| Inscription | `POST /api/v1/auth/register` | Cookies de session + redirection |
+| Connexion | `POST /api/v1/auth/login` | Cookies de session + redirection |
+| Profil | `GET /api/v1/auth/me` | Header : « Bonjour » + **Se déconnecter** |
+| Refresh | `POST /api/v1/auth/refresh` | Renouvelle automatiquement l’access token |
+| Déconnexion | `POST /api/v1/auth/logout` | Header : **Se connecter** / **Créer un compte** |
+
+Toutes les routes `/api/v1/*` exigent l’en-tête `x-api-key` (valeur = `API_KEY` du `.env`).
+
+## Documentation détaillée
+
+- Front : [`front/README.md`](front/README.md)
+- Backend : [`server/README.md`](server/README.md)
+>>>>>>> origin/develop

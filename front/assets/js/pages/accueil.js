@@ -4,6 +4,7 @@ import { createCampaignCard } from '../components/campaign-card.js';
 // Pour ajouter une image : image: 'assets/img/campagnes/nom-du-fichier.jpg'
 const FEATURED_CAMPAIGNS = [
     {
+        id: 1,
         title: 'Soutien pour l\'école primaire de Mfilou',
         category: 'Éducation',
         type: 'don',
@@ -13,6 +14,7 @@ const FEATURED_CAMPAIGNS = [
         daysLeft: 15,
     },
     {
+        id: 2,
         title: 'Mon atelier, mon avenir',
         category: 'Économie locale',
         type: 'recompenses',
@@ -22,6 +24,7 @@ const FEATURED_CAMPAIGNS = [
         daysLeft: 12,
     },
     {
+        id: 3,
         title: 'Protection des gorilles de la Loango',
         category: 'Environnement',
         type: 'don',
@@ -31,6 +34,7 @@ const FEATURED_CAMPAIGNS = [
         daysLeft: 21,
     },
     {
+        id: 4,
         title: 'Un dispensaire pour tous',
         category: 'Santé',
         type: 'recompenses',

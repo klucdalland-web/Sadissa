@@ -1,16 +1,28 @@
 import { formatFCFA, formatDaysLeft } from '../utils/format.js';
 
+// Racine du site (dossier front/), calculée à partir de l'emplacement de ce fichier.
+const ROOT = new URL('../../../', import.meta.url).pathname;
+
+// Page de détail d'une campagne : à modifier ici si l'équipe choisit un autre nom.
+const DETAIL_PAGE = 'pages/campagne-detail.html';
+
 const TYPES = {
     don: 'Don',
     recompenses: 'Récompenses',
 };
 
+function getDetailUrl(id) {
+    return `${ROOT}${DETAIL_PAGE}?id=${encodeURIComponent(id)}`;
+}
+
 /**
  * Crée une carte de campagne.
- * campaign : { title, category, type ('don' | 'recompenses'), image, raised, goal, daysLeft, href }
+ * campaign : { id, title, category, type ('don' | 'recompenses'), image, raised, goal, daysLeft, href? }
+ * Le lien du bouton est calculé à partir de l'id, sauf si un href est fourni.
  */
 export function createCampaignCard(campaign) {
     const {
+        id,
         title,
         category,
         type = 'don',
@@ -18,11 +30,12 @@ export function createCampaignCard(campaign) {
         raised = 0,
         goal = 0,
         daysLeft = 0,
-        href = '#',
+        href,
     } = campaign;
 
     const safeType = type in TYPES ? type : 'don';
     const percent = goal > 0 ? Math.min(100, Math.round((raised / goal) * 100)) : 0;
+    const link = href ?? (id !== undefined && id !== null ? getDetailUrl(id) : '#');
 
     const card = document.createElement('article');
     card.className = `campaign-card campaign-card--${safeType}`;
@@ -85,7 +98,10 @@ export function createCampaignCard(campaign) {
     card.querySelector('.js-goal').textContent = formatFCFA(goal);
     card.querySelector('.campaign-card__percent').textContent = `${percent}%`;
     card.querySelector('.js-days').textContent = formatDaysLeft(daysLeft);
-    card.querySelector('.campaign-card__cta').href = href;
+
+    const cta = card.querySelector('.campaign-card__cta');
+    cta.href = link;
+    cta.setAttribute('aria-label', `Voir le projet : ${title}`);
 
     const progress = card.querySelector('.campaign-card__progress');
     progress.setAttribute('aria-valuenow', String(percent));

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Connectez-vous à votre compte Sadissa pour gérer vos campagnes et contributions." />
+    <title>Connexion | Sadissa</title>
+    <link rel="stylesheet" href="../assets/css/base.css" />
+    <link rel="stylesheet" href="../assets/css/layout.css" />
+    <link rel="stylesheet" href="../assets/css/pages/auth.css" />
+</head>
+
+<body>
+    <main id="app" class="auth">
+        <span class="auth__blob auth__blob--1" aria-hidden="true"></span>
+        <span class="auth__blob auth__blob--2" aria-hidden="true"></span>
+
+        <div class="auth__panel">
+            <div class="auth__brand">
+                <img class="auth__logo" src="../assets/img/logo.png" alt="Sadissa" />
+                <h1 class="auth__title">Bon retour</h1>
+                <p class="auth__subtitle">
+                    Connectez-vous pour continuer à soutenir ou à porter vos projets.
+                </p>
+            </div>
+
+            <form class="auth-form" id="login-form" novalidate>
+                <div class="auth-form__alert auth-form__alert--error" id="login-alert" role="alert"></div>
+
+                <div class="auth-field">
+                    <label class="auth-field__label" for="login-email">Adresse e-mail</label>
+                    <input class="auth-field__control" id="login-email" name="email" type="email"
+                           autocomplete="email" placeholder="vous@exemple.com" required />
+                    <p class="auth-field__error" data-error-for="email"></p>
+                </div>
+
+                <div class="auth-field">
+                    <label class="auth-field__label" for="login-password">Mot de passe</label>
+                    <div class="auth-field__password">
+                        <input class="auth-field__control" id="login-password" name="password" type="password"
+                               autocomplete="current-password" placeholder="Votre mot de passe" required />
+                        <button class="auth-field__toggle" type="button" data-toggle-password="login-password"
+                                aria-label="Afficher le mot de passe">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                <circle cx="12" cy="12" r="3" />
+                            </svg>
+                        </button>
+                    </div>
+                    <p class="auth-field__error" data-error-for="password"></p>
+                </div>
+
+                <div class="auth-form__meta">
+                    <label class="auth-form__remember">
+                        <input type="checkbox" name="remember" />
+                        Se souvenir de moi
+                    </label>
+                    <a class="auth-form__link" href="#">Mot de passe oublié ?</a>
+                </div>
+
+                <button class="btn btn--primary auth-form__submit" type="submit" id="login-submit">
+                    Se connecter
+                </button>
+            </form>
+
+            <p class="auth__switch">
+                Pas encore de compte ?
+                <a href="register.html">Créer un compte</a>
+            </p>
+        </div>
+    </main>
+
+    <script type="module" src="../assets/js/main.js"></script>
+    <script type="module" src="../assets/js/pages/login.js"></script>
+</body>
+
+</html>
