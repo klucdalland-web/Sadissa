@@ -3,8 +3,14 @@
     "version": "0.0.0",
     "private": true,
     "scripts": {
-        "start": "node --watch ./bin/www",
-        "db:seed": "prisma db seed"
+        "start": "node ./bin/www",
+        "dev": "node --watch ./bin/www",
+        "postinstall": "prisma generate --config prisma7.config.ts",
+        "db:migrate": "prisma migrate deploy --config prisma7.config.ts",
+        "db:seed": "prisma db seed --config prisma7.config.ts"
+    },
+    "engines": {
+        "node": ">=20"
     },
     "dependencies": {
         "@prisma/adapter-pg": "^7.10.0",
@@ -19,9 +25,7 @@
         "jade": "~1.11.0",
         "jsonwebtoken": "^9.0.3",
         "morgan": "~1.9.1",
-        "pg": "^8.23.1"
-    },
-    "devDependencies": {
+        "pg": "^8.23.1",
         "prisma": "^7.10.0"
     }
 }
