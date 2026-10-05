@@ -5,6 +5,7 @@ import { getCurrentUser, logout as logoutSession } from '../api/auth.js';
 const ROOT = new URL('../../../', import.meta.url).pathname;
 
 const NAV_LINKS = [
+    { label: 'Accueil', href: 'index.html' },
     { label: 'Découvrir', href: 'pages/campagnes.html' },
     { label: 'Comment ça marche', href: 'pages/comment-ca-marche.html' },
     { label: 'Créer une campagne', href: 'pages/creer-campagne.html' },

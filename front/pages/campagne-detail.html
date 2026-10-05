@@ -165,25 +165,61 @@
                         </div>
                     </div>
 
-                    <form id="contribution-form">
+                    <form id="contribution-form" novalidate>
                         <div class="form-field">
                             <label for="contribution-amount">Montant (FCFA)</label>
-                            <input id="contribution-amount" name="amount" type="number" min="200" step="1" required inputmode="numeric">
+                            <input
+                                id="contribution-amount"
+                                name="amount"
+                                type="number"
+                                min="200"
+                                step="1"
+                                inputmode="numeric"
+                                aria-describedby="amount-error"
+                                required>
+                            <p class="field-error" id="amount-error" role="alert" hidden></p>
                         </div>
 
                         <div class="form-field">
                             <label for="contributor-name">Votre nom</label>
-                            <input id="contributor-name" name="name" type="text" autocomplete="name" required>
+                            <input
+                                id="contributor-name"
+                                name="name"
+                                type="text"
+                                autocomplete="name"
+                                maxlength="100"
+                                aria-describedby="name-error"
+                                required>
+                            <p class="field-error" id="name-error" role="alert" hidden></p>
                         </div>
 
-                        <div class="form-field">
-                            <label for="contributor-email">Votre adresse e-mail</label>
-                            <input id="contributor-email" name="email" type="email" autocomplete="email" required>
-                        </div>
+                        <fieldset class="form-field payment-methods">
+                            <legend>Moyen de paiement</legend>
+                            <div class="payment-options">
+                                <label class="payment-option" for="payment-airtel">
+                                    <input
+                                        id="payment-airtel"
+                                        type="radio"
+                                        name="paymentMethod"
+                                        value="airtel"
+                                        required>
+                                    <span>Airtel Money</span>
+                                </label>
+                                <label class="payment-option" for="payment-mtn">
+                                    <input
+                                        id="payment-mtn"
+                                        type="radio"
+                                        name="paymentMethod"
+                                        value="mtn">
+                                    <span>MTN MoMo</span>
+                                </label>
+                            </div>
+                            <p class="field-error" id="payment-error" role="alert" hidden></p>
+                        </fieldset>
 
                         <p id="contribution-status" role="status" aria-live="polite"></p>
 
-                        <button class="primary-button" type="submit">
+                        <button class="primary-button" id="contribution-submit" type="submit">
                             Continuer <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                         </button>
 
@@ -198,10 +234,15 @@
                 <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
                 <h1>Campagne indisponible</h1>
                 <p id="error-message">Les informations de cette campagne ne sont pas disponibles.</p>
-                <a class="primary-button" href="campagnes.html">
-                    <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
-                    Retour aux campagnes
-                </a>
+                <div class="error-panel__actions">
+                    <button class="secondary-button" id="retry-campaign" type="button">
+                        Réessayer
+                    </button>
+                    <a class="primary-button" href="campagnes.html">
+                        <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                        Retour aux campagnes
+                    </a>
+                </div>
             </section>
         </main>
 

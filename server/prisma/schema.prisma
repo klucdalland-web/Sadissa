@@ -33,19 +33,18 @@ model TypePiece {
 model User {
   id           Int       @id @default(autoincrement())
   email        String    @unique
-  firstName String
-  lastName  String
-  
+  firstName    String
+  lastName     String
   passwordHash String
-  numberPiece  String ?
+  numberPiece  String?
   typeUserId   Int
-  typePieceId  Int ?
+  typePieceId  Int?
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
   deletedAt    DateTime?
 
-  typeUser  TypeUser  @relation(fields: [typeUserId], references: [id])
-  typePiece TypePiece ?@relation(fields: [typePieceId], references: [id])
+  typeUser  TypeUser   @relation(fields: [typeUserId], references: [id])
+  typePiece TypePiece? @relation(fields: [typePieceId], references: [id])
   sessions  Session[]
 
   @@unique([typePieceId, numberPiece])
@@ -66,4 +65,35 @@ model Session {
 
   @@index([userId])
   @@map("sessions")
+}
+
+model Campaign {
+  id        Int      @id
+  title     String
+  category  String
+  type      String
+  image     String?
+  raised    Int      @default(0)
+  goal      Int
+  daysLeft  Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  contributions Contribution[]
+
+  @@map("campaigns")
+}
+
+model Contribution {
+  id            Int      @id @default(autoincrement())
+  campaignId    Int
+  amount        Int
+  name          String   @db.VarChar(100)
+  paymentMethod String   @db.VarChar(20)
+  createdAt     DateTime @default(now())
+
+  campaign Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+
+  @@index([campaignId])
+  @@map("contributions")
 }
