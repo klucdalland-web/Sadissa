@@ -1,6 +1,7 @@
 require("dotenv/config");
 const { PrismaClient } = require("@prisma/client");
 const { PrismaPg } = require("@prisma/adapter-pg");
+const { CAMPAIGNS } = require("../data/campaigns");
 
 const adapter = new PrismaPg({
   connectionString: process.env.DIRECT_URL || process.env.DATABASE_URL,
@@ -25,7 +26,33 @@ async function main() {
     skipDuplicates: true,
   });
 
-  console.log("Seed OK");
+  for (const campaign of CAMPAIGNS) {
+    await prisma.campaign.upsert({
+      where: { id: campaign.id },
+      create: {
+        id: campaign.id,
+        title: campaign.title,
+        category: campaign.category,
+        type: campaign.type,
+        image: campaign.image || null,
+        raised: campaign.raised,
+        goal: campaign.goal,
+        daysLeft: campaign.daysLeft,
+        createdAt: new Date(campaign.createdAt),
+      },
+      update: {
+        title: campaign.title,
+        category: campaign.category,
+        type: campaign.type,
+        image: campaign.image || null,
+        goal: campaign.goal,
+        daysLeft: campaign.daysLeft,
+        // raised non écrasé pour conserver les contributions déjà enregistrées
+      },
+    });
+  }
+
+  console.log(`Seed OK (${CAMPAIGNS.length} campagnes)`);
 }
 
 main()

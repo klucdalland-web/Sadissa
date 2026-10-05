@@ -1,17 +1,35 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Campagnes</title>
+    <meta name="description" content="Découvrez toutes les campagnes Sadissa et soutenez les projets qui vous tiennent à cœur." />
+    <title>Découvrir les campagnes | Sadissa</title>
     <link rel="stylesheet" href="../assets/css/base.css" />
     <link rel="stylesheet" href="../assets/css/layout.css" />
+    <link rel="stylesheet" href="../assets/css/components/campaign-card.css" />
     <link rel="stylesheet" href="../assets/css/pages/campagnes.css" />
 </head>
-<script type="module" src="../assets/js/main.js"></script>
 <body>
-    <div id="app"></div>
-</body>
+    <main id="app">
+        <section class="discover-hero">
+            <div class="container">
+                <h1 class="discover-hero__title">Découvrir les campagnes</h1>
+                <p class="discover-hero__text">
+                    Explorez les projets en cours et soutenez ceux qui vous inspirent.
+                </p>
+            </div>
+        </section>
 
+        <section class="discover-section">
+            <div class="container">
+                <p class="discover-count" id="campaigns-count" aria-live="polite"></p>
+                <div class="campaign-grid" id="campaigns-grid" aria-live="polite"></div>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="../assets/js/main.js"></script>
+    <script type="module" src="../assets/js/pages/campagnes.js"></script>
+</body>
 </html>

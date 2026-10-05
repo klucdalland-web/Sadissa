@@ -5,80 +5,54 @@
    ============================== */
 
 :root {
-
     /* ---------- Typographie ---------- */
-
     --font-primary: "Inter", sans-serif;
-
     /* ---------- Couleurs principales ---------- */
-
     --color-primary: #004028;
     --color-primary-dark: #00331F;
     --color-primary-light: #0A6843;
-
     /* Vert secondaire */
     --color-green: #206040;
     --color-green-light: #D8F0C8;
     --color-green-soft: #EEF8E8;
-
     /* ---------- Couleurs d'accent ---------- */
-
     --color-orange: #C96B32;
     --color-orange-light: #F8E8D8;
     --color-orange-soft: #FFF4EA;
-
     --color-blue: #6F8FC4;
     --color-blue-light: #E0E8F8;
     --color-blue-soft: #F2F5FC;
-
     /* ---------- Couleurs neutres ---------- */
-
     --color-white: #FFFFFF;
     --color-background: #F8F8F8;
     --color-background-soft: #F5F7F5;
-
     --color-text: #10251C;
     --color-text-secondary: #52605A;
     --color-text-muted: #7A827E;
-
     --color-border: #E5E8E5;
     --color-border-light: #EEF0EE;
-
     /* ---------- Statuts ---------- */
-
     --color-success: #16834E;
     --color-success-light: #E4F5E8;
-
     --color-warning: #D98A3A;
     --color-warning-light: #FFF0DE;
-
     --color-danger: #C94A3D;
     --color-danger-light: #FBE9E7;
-
     /* ---------- Ombres ---------- */
-
-    --shadow-sm:
-        0 2px 8px rgba(0, 64, 40, 0.06);
-
-    --shadow-md:
-        0 6px 20px rgba(0, 64, 40, 0.08);
-
-    --shadow-lg:
-        0 12px 35px rgba(0, 64, 40, 0.12);
-
+    --shadow-sm: 0 2px 8px rgba(0, 64, 40, 0.06);
+    --shadow-md: 0 6px 20px rgba(0, 64, 40, 0.08);
+    --shadow-lg: 0 12px 35px rgba(0, 64, 40, 0.12);
     /* ---------- Border radius ---------- */
-
     --radius-sm: 6px;
     --radius-md: 10px;
     --radius-lg: 14px;
     --radius-xl: 18px;
     --radius-2xl: 24px;
-
     /* ---------- Mise en page ---------- */
-
     --container-max: 1200px;
-
+    --container-max: 1900px;
 }
+
 
 /* ==============================
    RESET / STYLES DE BASE

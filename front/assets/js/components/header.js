@@ -1,8 +1,11 @@
+import { getCurrentUser, logout as logoutSession } from '../api/auth.js';
+
 // Racine du site (dossier front/), calculée à partir de l'emplacement de ce fichier.
 // Les liens fonctionnent ainsi depuis index.html comme depuis pages/*.html.
 const ROOT = new URL('../../../', import.meta.url).pathname;
 
 const NAV_LINKS = [
+    { label: 'Accueil', href: 'index.html' },
     { label: 'Découvrir', href: 'pages/campagnes.html' },
     { label: 'Comment ça marche', href: 'pages/comment-ca-marche.html' },
     { label: 'Créer une campagne', href: 'pages/creer-campagne.html' },
@@ -26,6 +29,22 @@ function buildLinks() {
     }).join('');
 }
 
+function guestActionsHtml() {
+    return `
+        <a class="btn btn--outline" href="${ROOT}pages/login.html">Se connecter</a>
+        <a class="btn btn--primary" href="${ROOT}pages/register.html">Créer un compte</a>`;
+}
+
+function userActionsHtml(user) {
+    const firstName = user.firstName || user.email || 'Mon compte';
+
+    return `
+        <span class="site-header__user" title="${user.email || ''}">
+            Bonjour, <strong>${firstName}</strong>
+        </span>
+        <button class="btn btn--outline" type="button" data-auth-logout>Se déconnecter</button>`;
+}
+
 function initMenu(header) {
     const toggle = header.querySelector('.site-header__toggle');
     const menu = header.querySelector('.site-header__menu');
@@ -40,7 +59,6 @@ function initMenu(header) {
         setOpen(!header.classList.contains('is-open'));
     });
 
-    // Referme le menu après un clic sur un lien du menu
     menu.addEventListener('click', (event) => {
         if (event.target.closest('a')) setOpen(false);
     });
@@ -49,9 +67,32 @@ function initMenu(header) {
         if (event.key === 'Escape') setOpen(false);
     });
 
-    // Repasse en mode fermé si on agrandit la fenêtre
     window.matchMedia('(min-width: 901px)').addEventListener('change', (event) => {
         if (event.matches) setOpen(false);
+    });
+}
+
+function renderAuthActions(header, user) {
+    const actions = header.querySelector('[data-auth-actions]');
+    if (!actions) return;
+
+    actions.innerHTML = user ? userActionsHtml(user) : guestActionsHtml();
+}
+
+async function initAuth(header) {
+    const user = await getCurrentUser();
+    renderAuthActions(header, user);
+
+    header.addEventListener('click', async (event) => {
+        const logoutBtn = event.target.closest('[data-auth-logout]');
+        if (!logoutBtn) return;
+
+        logoutBtn.disabled = true;
+        logoutBtn.textContent = 'Déconnexion…';
+
+        await logoutSession();
+        renderAuthActions(header, null);
+        window.location.href = `${ROOT}index.html`;
     });
 }
 
@@ -85,12 +126,14 @@ export function createHeader() {
                             <path d="M20 20l-3.5-3.5" />
                         </svg>
                     </button>
-                    <a class="btn btn--outline" href="#">Se connecter</a>
-                    <a class="btn btn--primary" href="#">Créer un compte</a>
+                    <div class="site-header__auth" data-auth-actions>
+                        ${guestActionsHtml()}
+                    </div>
                 </div>
             </div>
         </div>`;
 
     initMenu(header);
+    initAuth(header);
     return header;
 }

@@ -1,0 +1,45 @@
+/* ==============================
+   PAGE DÉCOUVRIR — SADISSA
+   ============================== */
+
+.discover-hero {
+    background: linear-gradient(180deg, var(--color-green-soft) 0%, var(--color-white) 100%);
+    padding-block: 48px 32px;
+}
+
+.discover-hero__title {
+    margin: 0 0 12px;
+    color: var(--color-text);
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.15;
+}
+
+.discover-hero__text {
+    margin: 0;
+    max-width: 560px;
+    color: var(--color-text-secondary);
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+.discover-section {
+    padding-block: 24px 64px;
+}
+
+.discover-count {
+    margin: 0 0 20px;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+@media (max-width: 600px) {
+    .discover-hero {
+        padding-block: 36px 24px;
+    }
+
+    .discover-section {
+        padding-block: 16px 48px;
+    }
+}
