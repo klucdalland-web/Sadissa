@@ -1,5 +1,7 @@
+// Même origine en prod (Render) et en local quand front + API sont servis ensemble.
+// Fallback localhost uniquement hors navigateur / outils hors page.
 const API_BASE_URL =
-    typeof window !== 'undefined' && window.location.port === '3000'
+    typeof window !== 'undefined'
         ? `${window.location.origin}/api`
         : 'http://localhost:3000/api';
 // Doit correspondre à API_KEY dans server/.env

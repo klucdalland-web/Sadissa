@@ -1,51 +1,36 @@
 import { createCampaignCard } from '../components/campaign-card.js';
+import { getCampagnesRecentes } from '../api/campagnes.js';
+import { renderListState } from '../utils/dom.js';
 
-// Données fictives en attendant l'API.
-// Pour ajouter une image : image: 'assets/img/campagnes/nom-du-fichier.jpg'
-const FEATURED_CAMPAIGNS = [
-    {
-        title: 'Soutien pour l\'école primaire de Mfilou',
-        category: 'Éducation',
-        type: 'don',
-        image: 'assets/img/ecole-mfilou.jfif',
-        raised: 235000,
-        goal: 500000,
-        daysLeft: 15,
-    },
-    {
-        title: 'Mon atelier, mon avenir',
-        category: 'Économie locale',
-        type: 'recompenses',
-        image: 'assets/img/atelier-couture.jfif',
-        raised: 120000,
-        goal: 300000,
-        daysLeft: 12,
-    },
-    {
-        title: 'Protection des gorilles de la Loango',
-        category: 'Environnement',
-        type: 'don',
-        image: 'assets/img/gorilles-loango.jfif',
-        raised: 680000,
-        goal: 1000000,
-        daysLeft: 21,
-    },
-    {
-        title: 'Un dispensaire pour tous',
-        category: 'Santé',
-        type: 'recompenses',
-        image: 'assets/img/dispensaire.jfif',
-        raised: 450000,
-        goal: 800000,
-        daysLeft: 18,
-    },
-];
-
-function renderFeaturedCampaigns() {
+async function renderFeaturedCampaigns() {
     const grid = document.getElementById('campaigns-grid');
     if (!grid) return;
 
-    grid.replaceChildren(...FEATURED_CAMPAIGNS.map(createCampaignCard));
+    renderListState(grid, {
+        type: 'loading',
+        message: 'Chargement des campagnes…',
+    });
+
+    try {
+        const campaigns = await getCampagnesRecentes(4);
+
+        if (!campaigns.length) {
+            renderListState(grid, {
+                type: 'empty',
+                message: 'Aucune campagne à découvrir pour le moment.',
+            });
+            return;
+        }
+
+        grid.replaceChildren(...campaigns.map(createCampaignCard));
+    } catch (error) {
+        console.error(error);
+        renderListState(grid, {
+            type: 'error',
+            message: 'Impossible de charger les campagnes. Vérifiez votre connexion puis réessayez.',
+            onRetry: renderFeaturedCampaigns,
+        });
+    }
 }
 
 renderFeaturedCampaigns();

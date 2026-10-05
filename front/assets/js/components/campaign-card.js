@@ -5,30 +5,35 @@ const TYPES = {
     recompenses: 'Récompenses',
 };
 
+const ROOT = new URL('../../../', import.meta.url).pathname;
+
 /**
  * Crée une carte de campagne.
- * campaign : { title, category, type ('don' | 'recompenses'), image, raised, goal, daysLeft, href }
+ * Les textes API sont toujours injectés via textContent (échappement XSS).
+ * campaign : { id, title, category, type ('don' | 'recompenses'), image, raised, goal, daysLeft, href }
  */
 export function createCampaignCard(campaign) {
     const {
-        title,
-        category,
+        id,
+        title = '',
+        category = '',
         type = 'don',
         image = null,
         raised = 0,
         goal = 0,
         daysLeft = 0,
-        href = '#',
+        href,
     } = campaign;
 
     const safeType = type in TYPES ? type : 'don';
     const percent = goal > 0 ? Math.min(100, Math.round((raised / goal) * 100)) : 0;
+    const detailHref =
+        href ||
+        `${ROOT}pages/campagne-detail.html?id=${encodeURIComponent(id ?? '')}`;
 
     const card = document.createElement('article');
     card.className = `campaign-card campaign-card--${safeType}`;
 
-    // Le HTML est une structure vide : les textes sont insérés avec textContent,
-    // ce qui reste sûr même quand les données viendront de l'API.
     card.innerHTML = `
         <div class="campaign-card__media">
             <img class="campaign-card__image" loading="lazy" alt="" />
@@ -60,7 +65,7 @@ export function createCampaignCard(campaign) {
                 <span class="js-days"></span>
             </p>
             <a class="btn btn--primary campaign-card__cta">
-                Voir le projet
+                Voir détail
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <line x1="5" y1="12" x2="19" y2="12" />
@@ -69,7 +74,6 @@ export function createCampaignCard(campaign) {
             </a>
         </div>`;
 
-    // Image (cadre de couleur si aucune image n'est fournie)
     const img = card.querySelector('.campaign-card__image');
     if (image) {
         img.src = image;
@@ -85,7 +89,10 @@ export function createCampaignCard(campaign) {
     card.querySelector('.js-goal').textContent = formatFCFA(goal);
     card.querySelector('.campaign-card__percent').textContent = `${percent}%`;
     card.querySelector('.js-days').textContent = formatDaysLeft(daysLeft);
-    card.querySelector('.campaign-card__cta').href = href;
+
+    const cta = card.querySelector('.campaign-card__cta');
+    cta.href = detailHref;
+    cta.setAttribute('aria-label', `Voir le détail de ${title}`);
 
     const progress = card.querySelector('.campaign-card__progress');
     progress.setAttribute('aria-valuenow', String(percent));
