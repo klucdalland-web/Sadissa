@@ -1,17 +1,165 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Comment ça marche</title>
     <link rel="stylesheet" href="../assets/css/base.css" />
     <link rel="stylesheet" href="../assets/css/layout.css" />
     <link rel="stylesheet" href="../assets/css/pages/comment-ca-marche.css" />
-</head>
-<script type="module" src="../assets/js/main.js"></script>
-<body>
+  </head>
+  <script type="module" src="../assets/js/main.js"></script>
+  <body>
     <div id="app"></div>
-</body>
+    <main class="cm">
+      <!-- Introduction -->
+      <section class="cm-hero">
+        <div class="cm-hero-text">
+          <span class="cm-badge">Comment ça marche ?</span>
+          <h1>
+            Ensemble, transformons<br />
+            <span>vos idées en réalité.</span>
+          </h1>
+          <p>
+            Sadissa est une plateforme de financement participatif qui permet à
+            chacun de soutenir des projets qui ont du sens. Voici comment ça
+            fonctionne, étape par étape.
+          </p>
+          <a class="cm-btn cm-btn-dark" href="creer-campagne.html">
+            Créer une campagne <span aria-hidden="true">→</span>
+          </a>
+        </div>
 
+        <div class="cm-hero-visual" aria-hidden="true">
+          <div class="cm-emoji">🤝</div>
+          <p class="cm-note">
+            De grandes réalisations commencent toujours par une bonne idée !
+          </p>
+        </div>
+      </section>
+
+      <!-- Le parcours en 3 étapes -->
+      <section class="cm-section">
+        <span class="cm-badge">Le processus</span>
+        <h2>Le parcours en <span>3 étapes</span></h2>
+        <p class="cm-lead">
+          Que vous soyez porteur de projet ou contributeur, la plateforme est
+          simple et intuitive. Découvrez comment ça marche.
+        </p>
+
+        <div class="cm-steps">
+          <article class="cm-step">
+            <div class="cm-step-top">
+              <span class="cm-num">1</span>
+              <span class="cm-icon" aria-hidden="true">💻</span>
+            </div>
+            <h3>Créez votre campagne</h3>
+            <p>
+              Décrivez votre projet, fixez votre objectif et choisissez le type
+              de financement : don ou récompenses.
+            </p>
+            <a
+              class="cm-arrow"
+              href="creer-campagne.html"
+              aria-label="Créer une campagne"
+              >→</a
+            >
+          </article>
+
+          <article class="cm-step">
+            <div class="cm-step-top">
+              <span class="cm-num">2</span>
+              <span class="cm-icon" aria-hidden="true">📣</span>
+            </div>
+            <h3>Partagez votre projet</h3>
+            <p>
+              Une fois votre campagne publiée, elle est visible par la
+              communauté. Vous pouvez la partager pour toucher plus de
+              personnes.
+            </p>
+            <a
+              class="cm-arrow"
+              href="campagnes.html"
+              aria-label="Découvrir les campagnes"
+              >→</a
+            >
+          </article>
+
+          <article class="cm-step cm-step-warm">
+            <div class="cm-step-top">
+              <span class="cm-num">3</span>
+              <span class="cm-icon" aria-hidden="true">🤲</span>
+            </div>
+            <h3>Recevez des contributions</h3>
+            <p>
+              Les soutiens affluent et vous permettent d'avancer vers la
+              réalisation de votre projet. Suivez l'évolution de votre campagne
+              depuis votre tableau de bord.
+            </p>
+            <a
+              class="cm-arrow"
+              href="dashboard.html"
+              aria-label="Voir le tableau de bord"
+              >→</a
+            >
+          </article>
+        </div>
+      </section>
+
+      <!-- Les types de campagnes -->
+      <section class="cm-section cm-types">
+        <div class="cm-types-text">
+          <span class="cm-badge">Les types de campagnes</span>
+          <h2>Deux façons de <span>soutenir</span></h2>
+          <p class="cm-lead">
+            Sur Sadissa, vous pouvez soutenir des projets de deux manières : le
+            <strong>don</strong> ou les <strong>récompenses</strong>. À vous de
+            choisir ce qui vous inspire !
+          </p>
+
+          <div class="cm-type-cards">
+            <a class="cm-type" href="campagnes.html?type=don">
+              <span class="cm-type-icon" aria-hidden="true">💚</span>
+              <h3>Campagnes de don</h3>
+              <p>
+                Soutenez directement un projet avec le montant de votre choix
+                (dès 200 FCFA).
+              </p>
+              <span class="cm-arrow" aria-hidden="true">→</span>
+            </a>
+
+            <a class="cm-type" href="campagnes.html?type=recompense">
+              <span class="cm-type-icon" aria-hidden="true">🎁</span>
+              <h3>Campagnes avec récompenses</h3>
+              <p>
+                Contribuez et recevez des récompenses exclusives en fonction de
+                votre soutien.
+              </p>
+              <span class="cm-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="cm-types-visual" aria-hidden="true">
+          <div class="cm-emoji">🌱</div>
+          <p class="cm-note">Soutenez aujourd'hui, récoltez demain !</p>
+        </div>
+      </section>
+
+      <!-- Appel à l'action -->
+      <section class="cm-cta">
+        <span class="cm-cta-icon" aria-hidden="true">🌿</span>
+        <div>
+          <h2>Prêt à passer à l'action ?</h2>
+          <p>
+            Rejoignez une communauté engagée et donnez vie aux projets qui
+            changent des vies.
+          </p>
+        </div>
+        <a class="cm-btn cm-btn-light" href="creer-campagne.html">
+          Créer une campagne <span aria-hidden="true">→</span>
+        </a>
+      </section>
+    </main>
+  </body>
 </html>
