@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Campagnes</title>
+
+    <link rel="stylesheet" href="../assets/css/campagne.css">
+    <link rel="stylesheet" href="../assets/css/variables.css">
+</head>
+
+<body>
+    <div class="head">
+        <h1>
+            Faites vous financer peu importe
+            <em>votre projet</em>
+        </h1>
+        <p>
+            Profitez d'un financement participatif
+            <em>pour réaliser votre idée</em>
+        </p>
+        <a href="#creer-campagne">
+            Créer une campagne
+        </a>
+        <a href="">
+            Voir les campagnes
+        </a>
+    </div>
+
+    <div class="campagne-image">
+
+        <img
+            src="https://plus.unsplash.com/premium_photo-1683140538884-07fb31428ca6?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Campagne de financement"
+        >
+
+    </div>
+
+    <main>
+
+        <section>
+
+            <div class="container">
+
+                <h2>
+                    Pourquoi créer une campagne ?
+                </h2>
+
+                <p>
+                    Le financement participatif est un moyen efficace de
+                    concrétiser vos idées. En créant une campagne, vous pouvez
+                    mobiliser votre communauté et obtenir le soutien nécessaire
+                    pour réaliser votre projet.
+                </p>
+
+            </div>
+
+
+            <div class="container">
+
+                <h2>
+                    Comment ça marche ?
+                </h2>
+
+                <section
+                    class="how-it-works"
+                    id="comment-ca-marche"
+                >
+
+                    <div class="how-it-works__steps">
+
+                        <!-- Étape 1 -->
+                        <article class="step-card">
+
+                            <div class="step-card__number">
+                                01
+                            </div>
+
+                            <div class="step-card__icon">
+                                +
+                            </div>
+
+                            <h3>
+                                Créez votre campagne
+                            </h3>
+
+                            <p>
+                                Présentez votre projet, définissez votre objectif
+                                de financement et choisissez la durée de votre campagne.
+                            </p>
+
+                        </article>
+
+
+                        <!-- Étape 2 -->
+                        <article class="step-card">
+
+                            <div class="step-card__number">
+                                02
+                            </div>
+
+                            <div class="step-card__icon">
+                                ✎
+                            </div>
+
+                            <h3>
+                                Présentez votre projet
+                            </h3>
+
+                            <p>
+                                Expliquez votre idée, ajoutez des images et partagez
+                                les informations qui permettront aux contributeurs
+                                de comprendre votre projet.
+                            </p>
+
+                        </article>
+
+
+                        <!-- Étape 3 -->
+                        <article class="step-card">
+
+                            <div class="step-card__number">
+                                03
+                            </div>
+
+                            <div class="step-card__icon">
+                                ✓
+                            </div>
+
+                            <h3>
+                                Faites valider votre campagne
+                            </h3>
+
+                            <p>
+                                Votre campagne est vérifiée avant sa publication afin
+                                de garantir des informations claires et fiables.
+                            </p>
+
+                        </article>
+
+
+                        <!-- Étape 4 -->
+                        <article class="step-card">
+
+                            <div class="step-card__number">
+                                04
+                            </div>
+
+                            <div class="step-card__icon">
+                                ↗
+                            </div>
+
+                            <h3>
+                                Partagez et collectez
+                            </h3>
+
+                            <p>
+                                Partagez votre campagne autour de vous et recevez les
+                                contributions de personnes qui souhaitent soutenir votre projet.
+                            </p>
+
+                        </article>
+
+                    </div>
+
+
+                    <div class="how-it-works__cta">
+
+                        <div>
+
+                            <h3>
+                                Vous avez un projet ?
+                            </h3>
+
+                            <p>
+                                Donnez-lui une chance de voir le jour.
+                            </p>
+
+                        </div>
+
+                        <a
+                            href="#creer-campagne"
+                            class="how-it-works__button"
+                        >
+                            Créer une campagne
+                            <span>↓</span>
+                        </a>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+
+            <!-- ==========================
+                 CRÉATION DE CAMPAGNE
+            =========================== -->
+
+            <section
+                class="campaign-create"
+                id="creer-campagne"
+            >
+
+                <div class="campaign-create__container">
+
+
+                    <!-- En-tête -->
+
+                    <div class="campaign-create__header">
+
+                        <h1>
+                            Donnez vie à votre projet
+                        </h1>
+
+                        <p>
+                            Présentez votre cause, fixez votre objectif et mobilisez
+                            une communauté prête à vous soutenir.
+                        </p>
+
+                    </div>
+
+
+                    <!-- ==========================
+                         FORMULAIRE
+                    =========================== -->
+
+                    <form
+                        class="campaign-form"
+                        id="campaign-form"
+                    >
+
+
+                        <!-- ==========================
+                             ÉTAPE 01
+                             INFORMATIONS CAMPAGNE
+                        =========================== -->
+
+                        <div class="form-card">
+
+                            <div class="form-card__header">
+
+                                <div>
+
+                                    <span class="form-card__step">
+                                        ÉTAPE 01
+                                    </span>
+
+                                    <h2>
+                                        Informations de la campagne
+                                    </h2>
+
+                                    <p>
+                                        Présentez votre projet et expliquez pourquoi
+                                        votre campagne mérite d'être soutenue.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-grid">
+
+
+                                <!-- Nom de la campagne -->
+
+                                <div class="form-group form-group--full">
+
+                                    <label for="campaign-title">
+                                        Nom de la campagne
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        id="campaign-title"
+                                        name="campaign-title"
+                                        placeholder="Ex : Construire une bibliothèque pour notre école"
+                                        required
+                                    >
+
+                                </div>
+
+
+                                <!-- Type de campagne -->
+
+                                <div class="form-group">
+
+                                    <label for="campaign-type">
+                                        Type de campagne
+                                    </label>
+
+                                    <select
+                                        id="campaign-type"
+                                        name="campaign-type"
+                                        required
+                                    >
+
+                                        <option value="">
+                                            Sélectionnez un type
+                                        </option>
+
+                                        <option value="humanitaire">
+                                            Humanitaire
+                                        </option>
+
+                                        <option value="education">
+                                            Éducation
+                                        </option>
+
+                                        <option value="sante">
+                                            Santé
+                                        </option>
+
+                                        <option value="entrepreneuriat">
+                                            Entrepreneuriat
+                                        </option>
+
+                                        <option value="social">
+                                            Projet social
+                                        </option>
+
+                                        <option value="culture">
+                                            Culture et arts
+                                        </option>
+
+                                        <option value="environnement">
+                                            Environnement
+                                        </option>
+
+                                        <option value="autre">
+                                            Autre
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+
+                                <!-- Cause -->
+
+                                <div class="form-group">
+
+                                    <label for="campaign-cause">
+                                        Cause à soutenir
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        id="campaign-cause"
+                                        name="campaign-cause"
+                                        placeholder="Ex : Aider les enfants défavorisés"
+                                        required
+                                    >
+
+                                </div>
+
+
+                                <!-- Description -->
+
+                                <div class="form-group form-group--full">
+
+                                    <label for="campaign-description">
+                                        Présentation de la campagne
+                                    </label>
+
+                                    <textarea
+                                        id="campaign-description"
+                                        name="campaign-description"
+                                        rows="7"
+                                        placeholder="Expliquez votre projet, son importance et l'utilisation prévue des fonds..."
+                                        required
+                                    ></textarea>
+
+                                    <span class="form-help">
+                                        Décrivez clairement votre cause afin que les
+                                        contributeurs comprennent votre objectif.
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- ==========================
+                             ÉTAPE 02
+                             IMAGE
+                        =========================== -->
+
+                        <div class="form-card">
+
+                            <div class="form-card__header">
+
+                                <span class="form-card__step">
+                                    ÉTAPE 02
+                                </span>
+
+                                <h2>
+                                    Images de la campagne
+                                </h2>
+
+                                <p>
+                                    Ajoutez une image principale qui représentera votre
+                                    campagne auprès des contributeurs.
+                                </p>
+
+                            </div>
+
+
+                            <div class="campaign-upload">
+
+                                <div class="campaign-upload__icon">
+                                    +
+                                </div>
+
+                                <h3>
+                                    Ajouter l'image principale
+                                </h3>
+
+                                <p>
+                                    JPG, PNG ou WEBP · 5 Mo maximum
+                                </p>
+
+                                <label
+                                    for="campaign-image"
+                                    class="campaign-upload__button"
+                                >
+                                    Choisir une image
+                                </label>
+
+                                <input
+                                    type="file"
+                                    id="campaign-image"
+                                    name="campaign-image"
+                                    accept="image/png,image/jpeg,image/webp"
+                                >
+
+                            </div>
+
+
+                            <!-- Zone utilisée par le JS -->
+
+                            <div
+                                class="campaign-upload__preview"
+                                id="campaign-image-preview"
+                            >
+                                <!-- Aperçu de l'image -->
+                            </div>
+
+                        </div>
+
+
+                        <!-- ==========================
+                             ÉTAPE 03
+                             CRÉATEUR
+                        =========================== -->
+
+                        <div class="form-card">
+
+                            <div class="form-card__header">
+
+                                <span class="form-card__step">
+                                    ÉTAPE 03
+                                </span>
+
+                                <h2>
+                                    Créateur de la campagne
+                                </h2>
+
+                                <p>
+                                    Présentez la personne ou l'organisation à l'origine
+                                    de cette campagne.
+                                </p>
+
+                            </div>
+
+
+                            <div class="form-grid">
+
+
+                                <!-- Nom du créateur -->
+
+                                <div class="form-group">
+
+                                    <label for="creator-name">
+                                        Nom du créateur
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        id="creator-name"
+                                        name="creator-name"
+                                        placeholder="Nom complet"
+                                        required
+                                    >
+
+                                </div>
+
+
+                                <!-- Type de créateur -->
+
+                                <div class="form-group">
+
+                                    <label for="creator-type">
+                                        Type de créateur
+                                    </label>
+
+                                    <select
+                                        id="creator-type"
+                                        name="creator-type"
+                                        required
+                                    >
+
+                                        <option value="">
+                                            Sélectionnez
+                                        </option>
+
+                                        <option value="individual">
+                                            Particulier
+                                        </option>
+
+                                        <option value="organization">
+                                            Organisation
+                                        </option>
+
+                                        <option value="association">
+                                            Association
+                                        </option>
+
+                                        <option value="company">
+                                            Entreprise
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+
+                                <!-- Présentation créateur -->
+
+                                <div class="form-group form-group--full">
+
+                                    <label for="creator-description">
+                                        Présentation du créateur
+                                    </label>
+
+                                    <textarea
+                                        id="creator-description"
+                                        name="creator-description"
+                                        rows="4"
+                                        placeholder="Présentez brièvement le créateur ou l'organisation..."
+                                    ></textarea>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- ÉTAPE 04 OBJECTIF ET DATES -->
+
+                        <div class="form-card">
+
+                            <div class="form-card__header">
+
+                                <span class="form-card__step">
+                                    ÉTAPE 04
+                                </span>
+
+                                <h2>
+                                    Objectif et durée
+                                </h2>
+
+                                <p>
+                                    Définissez le montant nécessaire et la période
+                                    pendant laquelle votre campagne sera active.
+                                </p>
+
+                            </div>
+
+
+                            <div class="form-grid">
+
+
+                                <!-- Objectif -->
+
+                                <div class="form-group">
+
+                                    <label for="campaign-goal">
+                                        Objectif de financement
+                                    </label>
+
+                                    <div class="input-with-suffix">
+
+                                        <input
+                                            type="number"
+                                            id="campaign-goal"
+                                            name="campaign-goal"
+                                            min="1"
+                                            placeholder="500000"
+                                            required
+                                        >
+
+                                        <span>
+                                            XAF
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- Date de lancement -->
+
+                                <div class="form-group">
+
+                                    <label for="campaign-start">
+                                        Date de lancement
+                                    </label>
+
+                                    <input
+                                        type="date"
+                                        id="campaign-start"
+                                        name="campaign-start"
+                                        required
+                                    >
+
+                                </div>
+
+
+                                <!-- Date de fin -->
+
+                                <div class="form-group">
+
+                                    <label for="campaign-end">
+                                        Date de fin
+                                    </label>
+
+                                    <input
+                                        type="date"
+                                        id="campaign-end"
+                                        name="campaign-end"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- INFORMATION FINANCEMENT -->
+
+                        <div
+                            class="campaign-progress-info"
+                            id="campaign-progress-info"
+                        >
+
+                            <div class="campaign-progress-info__icon">
+                                i
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    Comment fonctionne le financement ?
+                                </h3>
+
+                                <p>
+                                    La progression du financement sera visible uniquement
+                                    après le lancement de votre campagne. Elle indiquera
+                                    le montant collecté par rapport à votre objectif.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- ACTIONS -->
+
+                        <div class="campaign-form__actions">
+
+
+                            <!-- Brouillon -->
+
+                            <button
+                                type="button"
+                                class="button button--secondary"
+                                id="save-draft"
+                            >
+                                Enregistrer comme brouillon
+                            </button>
+
+
+                            <!-- Soumission -->
+
+                            <button
+                                type="submit"
+                                class="button button--primary"
+                                id="submit-campaign"
+                            >
+                                Créer la campagne
+                                <span>→</span>
+                            </button>
+
+                        </div>
+
+
+                    </form>
+
+                </div>
+
+            </section>
+
+        </section>
+
+
+        <!-- CAROUSEL -->
+
+        <section class="image-carousel">
+
+            <div class="carousel-track">
+
+                <div class="carousel-item">
+                    <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQM3A0FCbwrQsK4xiw7Lv8PF4flzM8XUEjTacP9jbmKbg&s=10"
+                        alt="Akieni Akademy"
+                    >
+                </div>
+
+                <div class="carousel-item">
+                    <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL9k3u28EU63gjORBQBFy05KQfGvLLeXG3jmpPOL0IpA&s=10"
+                        alt="MTN"
+                    >
+                </div>
+
+                <div class="carousel-item">
+                    <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnMveOBdyaMI1ud7XXDAabKlVYfTEn4oILbPnepxOEoIbmG-pbO6ZG4K4&s=10"
+                        alt="Vival"
+                    >
+                </div>
+
+                <div class="carousel-item">
+                    <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-OJW0VZhoWOpc5AcHIMWMQh34PAIsm_8S6wEISwjLmw&s=10"
+                        alt="Portrait"
+                    >
+                </div>
+
+                <div class="carousel-item">
+                    <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSthTqUFIXYD-9gGiCram9IqXS2zX6R7XSz4V7nbwUfyg&s=10"
+                        alt="Portrait"
+                    >
+                </div>
+
+                <div class="carousel-item">
+                    <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdKURVahVzuRzEp1N6hqFXwxAyRzrO5lisOdSmY7idwierX4ZFM-Dzo5o&s=10"
+                        alt="Portrait"
+                    >
+                </div>
+
+                <div class="carousel-item">
+                    <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvNyf1s5vIGcKVs0iKU14iW_U3ZQn65RK3zwyFaZZbdQ&s=10"
+                        alt="Portrait"
+                    >
+                </div>
+
+
+                <!-- Duplication -->
+
+                <div class="carousel-item">
+                    <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQM3A0FCbwrQsK4xiw7Lv8PF4flzM8XUEjTacP9jbmKbg&s=10"
+                        alt="Akieni Akademy"
+                    >
+                </div>
+
+                <div class="carousel-item">
+                    <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL9k3u28EU63gjORBQBFy05KQfGvLLeXG3jmpPOL0IpA&s=10"
+                        alt="MTN"
+                    >
+                </div>
+
+                <div class="carousel-item">
+                    <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnMveOBdyaMI1ud7XXDAabKlVYfTEn4oILbPnepxOEoIbmG-pbO6ZG4K4&s=10"
+                        alt="Vival"
+                    >
+                </div>
+
+                <div class="carousel-item">
+                    <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-OJW0VZhoWOpc5AcHIMWMQh34PAIsm_8S6wEISwjLmw&s=10"
+                        alt="Portrait"
+                    >
+                </div>
+
+                <div class="carousel-item">
+                    <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSthTqUFIXYD-9gGiCram9IqXS2zX6R7XSz4V7nbwUfyg&s=10"
+                        alt="Portrait"
+                    >
+                </div>
+
+                <div class="carousel-item">
+                    <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdKURVahVzuRzEp1N6hqFXwxAyRzrO5lisOdSmY7idwierX4ZFM-Dzo5o&s=10"
+                        alt="Portrait"
+                    >
+                </div>
+
+                <div class="carousel-item">
+                    <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvNyf1s5vIGcKVs0iKU14iW_u3ZQn65RK3zwyFaZZbdQ&s=10"
+                        alt="Portrait"
+                    >
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="../assets/js/pages/campagnes.js"></script>
+
+</body>
+
+</html>
