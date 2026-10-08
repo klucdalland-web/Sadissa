@@ -23,6 +23,19 @@
 
         <section class="discover-section">
             <div class="container">
+                <div class="filters-container">
+                    <div class="filters-bar" id="filters-bar">
+                        <button class="filter-btn active" data-filter="all">Toutes</button>
+                        <button class="filter-btn" data-filter="Éducation">Éducation</button>
+                        <button class="filter-btn" data-filter="Santé">Santé</button>
+                        <button class="filter-btn" data-filter="Environnement">Environnement</button>
+                        <button class="filter-btn" data-filter="Social">Social</button>
+                        <button class="filter-btn" data-filter="Agriculture">Agriculture</button>
+                    </div>
+                    <div class="search-bar">
+                        <input type="text" id="search-input" placeholder="Rechercher une campagne..." aria-label="Rechercher une campagne">
+                    </div>
+                </div>
                 <p class="discover-count" id="campaigns-count" aria-live="polite"></p>
                 <div class="campaign-grid" id="campaigns-grid" aria-live="polite"></div>
             </div>
