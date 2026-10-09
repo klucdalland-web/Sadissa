@@ -1,99 +1,69 @@
-// 
-// SADISSA - Gestion des campagnes
-// 
-
-
-// 
-// ÉLÉMENTS DU DOM
-// 
 
 const campaignForm = document.querySelector("#campaign-form");
-
 const saveDraftButton = document.querySelector("#save-draft");
-
 const submitCampaignButton = document.querySelector("#submit-campaign");
-
 const imageInput = document.querySelector("#campaign-image");
-
 const imagePreview = document.querySelector("#campaign-image-preview");
 
 
-// 
 // RÉCUPÉRER LES DONNÉES
-// 
 
 function getCampaignData() {
+  return {
+    title: document.querySelector("#campaign-title").value,
 
-    return {
+    type: document.querySelector("#campaign-type").value,
 
-        title: document.querySelector("#campaign-title").value,
+    cause: document.querySelector("#campaign-cause").value,
 
-        type: document.querySelector("#campaign-type").value,
+    description: document.querySelector("#campaign-description").value,
 
-        cause: document.querySelector("#campaign-cause").value,
+    image: imageInput.dataset.image || "",
 
-        description:
-            document.querySelector("#campaign-description").value,
+    creatorName: document.querySelector("#creator-name").value,
 
-        image: imageInput.dataset.image || "",
+    creatorType: document.querySelector("#creator-type").value,
 
-        creatorName:
-            document.querySelector("#creator-name").value,
+    creatorDescription: document.querySelector("#creator-description").value,
 
-        creatorType:
-            document.querySelector("#creator-type").value,
+    goal: document.querySelector("#campaign-goal").value,
 
-        creatorDescription:
-            document.querySelector("#creator-description").value,
+    startDate: document.querySelector("#campaign-start").value,
 
-        goal:
-            document.querySelector("#campaign-goal").value,
+    endDate: document.querySelector("#campaign-end").value,
 
-        startDate:
-            document.querySelector("#campaign-start").value,
+    amountCollected: 0,
 
-        endDate:
-            document.querySelector("#campaign-end").value,
-
-        amountCollected: 0,
-
-        createdAt: new Date().toISOString()
-
-    };
+    createdAt: new Date().toISOString(),
+  };
 }
 
-
-// 
 // CRÉER LE POPUP
-// 
 
 function createPopup(content) {
+  const existingPopup = document.querySelector(".campaign-popup");
 
-    const existingPopup = document.querySelector(".campaign-popup");
+  if (existingPopup) {
+    existingPopup.remove();
+  }
 
-    if (existingPopup) {
-        existingPopup.remove();
-    }
+  const popup = document.createElement("div");
 
-    const popup = document.createElement("div");
+  popup.className = "campaign-popup";
 
-    popup.className = "campaign-popup";
+  popup.innerHTML = content;
 
-    popup.innerHTML = content;
+  document.body.appendChild(popup);
 
-    document.body.appendChild(popup);
-
-    return popup;
+  return popup;
 }
 
-
-// 
+//
 // POPUP DE SUCCÈS
-// 
+//
 
 function showSuccessPopup(campaign) {
-
-    const popup = createPopup(`
+  const popup = createPopup(`
 
         <div class="campaign-popup__overlay"></div>
 
@@ -130,47 +100,29 @@ function showSuccessPopup(campaign) {
 
     `);
 
+  // Fermer le popup
 
-    // Fermer le popup
+  const closeButton = document.querySelector("#close-success-popup");
 
-    const closeButton = document.querySelector(
-        "#close-success-popup"
-    );
+  closeButton.addEventListener("click", function () {
+    popup.remove();
+  });
 
-    closeButton.addEventListener("click", function () {
+  // Visualiser la campagne
 
-        popup.remove();
+  const viewButton = document.querySelector("#view-campaign");
 
-    });
+  viewButton.addEventListener("click", function () {
+    popup.remove();
 
-
-    // Visualiser la campagne
-
-    const viewButton = document.querySelector(
-        "#view-campaign"
-    );
-
-    viewButton.addEventListener("click", function () {
-
-        popup.remove();
-
-        showCampaignPreview(
-            campaign,
-            false
-        );
-
-    });
-
+    showCampaignPreview(campaign, false);
+  });
 }
 
-
-// 
 // POPUP BROUILLON
-// 
 
 function showDraftPopup(campaign) {
-
-    const popup = createPopup(`
+  const popup = createPopup(`
 
         <div class="campaign-popup__overlay"></div>
 
@@ -194,14 +146,12 @@ function showDraftPopup(campaign) {
             <div class="draft-preview">
 
                 ${
-                    campaign.image
-                    ?
-                    `<img
+                  campaign.image
+                    ? `<img
                         src="${campaign.image}"
                         alt="${campaign.title}"
                     >`
-                    :
-                    `<div class="draft-preview__image">
+                    : `<div class="draft-preview__image">
                         Aucune image
                     </div>`
                 }
@@ -254,55 +204,35 @@ function showDraftPopup(campaign) {
 
     `);
 
+  // Fermer
 
-    // Fermer
-
-    document.querySelector(
-        "#close-draft-popup"
-    ).addEventListener("click", function () {
-
-        popup.remove();
-
+  document
+    .querySelector("#close-draft-popup")
+    .addEventListener("click", function () {
+      popup.remove();
     });
 
+  document.querySelector("#close-draft").addEventListener("click", function () {
+    popup.remove();
+  });
 
-    document.querySelector(
-        "#close-draft"
-    ).addEventListener("click", function () {
+  // Modifier le brouillon
 
-        popup.remove();
+  document.querySelector("#edit-draft").addEventListener("click", function () {
+    popup.remove();
 
+    fillForm(campaign);
+
+    document.querySelector("#creer-campagne").scrollIntoView({
+      behavior: "smooth",
     });
-
-
-    // Modifier le brouillon
-
-    document.querySelector(
-        "#edit-draft"
-    ).addEventListener("click", function () {
-
-        popup.remove();
-
-        fillForm(campaign);
-
-        document.querySelector(
-            "#creer-campagne"
-        ).scrollIntoView({
-            behavior: "smooth"
-        });
-
-    });
-
+  });
 }
 
-
-// 
 // PRÉVISUALISATION
-// 
 
 function showCampaignPreview(campaign, isDraft) {
-
-    const popup = createPopup(`
+  const popup = createPopup(`
 
         <div class="campaign-popup__overlay"></div>
 
@@ -320,15 +250,13 @@ function showCampaignPreview(campaign, isDraft) {
             </span>
 
             ${
-                campaign.image
-                ?
-                `<img
+              campaign.image
+                ? `<img
                     class="campaign-preview__image"
                     src="${campaign.image}"
                     alt="${campaign.title}"
                 >`
-                :
-                ""
+                : ""
             }
 
             <h2>
@@ -364,11 +292,9 @@ function showCampaignPreview(campaign, isDraft) {
             <div class="campaign-preview__notice">
 
                 ${
-                    isDraft
-                    ?
-                    "Cette campagne est enregistrée comme brouillon et n'est visible que par vous."
-                    :
-                    "Cette campagne est en attente de validation."
+                  isDraft
+                    ? "Cette campagne est enregistrée comme brouillon et n'est visible que par vous."
+                    : "Cette campagne est en attente de validation."
                 }
 
             </div>
@@ -377,54 +303,43 @@ function showCampaignPreview(campaign, isDraft) {
 
     `);
 
-
-    document.querySelector(
-        "#close-preview"
-    ).addEventListener("click", function () {
-
-        popup.remove();
-
+  document
+    .querySelector("#close-preview")
+    .addEventListener("click", function () {
+      popup.remove();
     });
-
 }
 
 
-// 
 // FORMATER LE MONTANT
-// 
 
 function formatAmount(amount) {
+  if (!amount) {
+    return "0";
+  }
 
-    if (!amount) {
-        return "0";
-    }
-
-    return Number(amount).toLocaleString("fr-FR");
-
+  return Number(amount).toLocaleString("fr-FR");
 }
 
-
-// 
+//
 // APERÇU DE L'IMAGE
-// 
+//
 
 imageInput.addEventListener("change", function () {
+  const file = this.files[0];
 
-    const file = this.files[0];
+  if (!file) {
+    return;
+  }
 
-    if (!file) {
-        return;
-    }
+  const reader = new FileReader();
 
-    const reader = new FileReader();
+  reader.onload = function (event) {
+    const imageUrl = event.target.result;
 
-    reader.onload = function (event) {
+    imageInput.dataset.image = imageUrl;
 
-        const imageUrl = event.target.result;
-
-        imageInput.dataset.image = imageUrl;
-
-        imagePreview.innerHTML = `
+    imagePreview.innerHTML = `
 
             <img
                 src="${imageUrl}"
@@ -432,101 +347,67 @@ imageInput.addEventListener("change", function () {
             >
 
         `;
+  };
 
-    };
-
-    reader.readAsDataURL(file);
-
+  reader.readAsDataURL(file);
 });
 
-
-// 
 // ENREGISTRER BROUILLON
-// 
+
 
 saveDraftButton.addEventListener("click", function () {
+  const campaign = getCampaignData();
 
-    const campaign = getCampaignData();
+  campaign.status = "draft";
 
-    campaign.status = "draft";
+  const campaigns = JSON.parse(localStorage.getItem("sadissa_campaigns")) || [];
 
-    const campaigns =
-        JSON.parse(
-            localStorage.getItem("sadissa_campaigns")
-        ) || [];
+  campaigns.push(campaign);
 
-    campaigns.push(campaign);
+  localStorage.setItem("sadissa_campaigns", JSON.stringify(campaigns));
 
-    localStorage.setItem(
-        "sadissa_campaigns",
-        JSON.stringify(campaigns)
-    );
-
-    showDraftPopup(campaign);
-
+  showDraftPopup(campaign);
 });
 
-
-// 
 // CRÉER LA CAMPAGNE
-// 
 
 campaignForm.addEventListener("submit", function (event) {
+  event.preventDefault();
 
-    event.preventDefault();
+  const campaign = getCampaignData();
 
-    const campaign = getCampaignData();
+  campaign.status = "pending_review";
 
-    campaign.status = "pending_review";
+  const campaigns = JSON.parse(localStorage.getItem("sadissa_campaigns")) || [];
 
-    const campaigns =
-        JSON.parse(
-            localStorage.getItem("sadissa_campaigns")
-        ) || [];
+  campaigns.push(campaign);
 
-    campaigns.push(campaign);
+  localStorage.setItem("sadissa_campaigns", JSON.stringify(campaigns));
 
-    localStorage.setItem(
-        "sadissa_campaigns",
-        JSON.stringify(campaigns)
-    );
-
-    showSuccessPopup(campaign);
-
+  showSuccessPopup(campaign);
 });
- 
+
 // REMPLIR LE FORMULAIRE
 
 function fillForm(campaign) {
+  document.querySelector("#campaign-title").value = campaign.title;
 
-    document.querySelector("#campaign-title").value =
-        campaign.title;
+  document.querySelector("#campaign-type").value = campaign.type;
 
-    document.querySelector("#campaign-type").value =
-        campaign.type;
+  document.querySelector("#campaign-cause").value = campaign.cause;
 
-    document.querySelector("#campaign-cause").value =
-        campaign.cause;
+  document.querySelector("#campaign-description").value = campaign.description;
 
-    document.querySelector("#campaign-description").value =
-        campaign.description;
+  document.querySelector("#creator-name").value = campaign.creatorName;
 
-    document.querySelector("#creator-name").value =
-        campaign.creatorName;
+  document.querySelector("#creator-type").value = campaign.creatorType;
 
-    document.querySelector("#creator-type").value =
-        campaign.creatorType;
+  document.querySelector("#creator-description").value =
+    campaign.creatorDescription;
 
-    document.querySelector("#creator-description").value =
-        campaign.creatorDescription;
+  document.querySelector("#campaign-goal").value = campaign.goal;
 
-    document.querySelector("#campaign-goal").value =
-        campaign.goal;
+  document.querySelector("#campaign-start").value = campaign.startDate;
 
-    document.querySelector("#campaign-start").value =
-        campaign.startDate;
-
-    document.querySelector("#campaign-end").value =
-        campaign.endDate;
-
+  document.querySelector("#campaign-end").value = campaign.endDate;
 }
