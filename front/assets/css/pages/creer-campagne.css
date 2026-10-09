@@ -1,0 +1,530 @@
+/* ==============================
+   PAGE CRÉER CAMPAGNE — SADISSA
+   ============================== */
+
+.head {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: var(--color-white);
+    padding: 80px 40px;
+    text-align: center;
+}
+
+.head h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin: 0 0 16px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.head h1 em {
+    font-style: italic;
+    color: var(--color-primary-light);
+}
+
+.head p {
+    font-size: 1.1rem;
+    margin: 0 0 32px;
+    opacity: 0.95;
+    line-height: 1.6;
+}
+
+.head p em {
+    font-style: italic;
+    color: var(--color-primary-light);
+}
+
+.head a {
+    display: inline-block;
+    margin: 0 8px;
+    padding: 12px 24px;
+    background: var(--color-white);
+    color: var(--color-primary);
+    text-decoration: none;
+    border-radius: 999px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.head a:hover {
+    background: var(--color-green-light);
+    color: var(--color-primary);
+}
+
+.campagne-image {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+}
+
+.campagne-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+main {
+    padding: 64px 0;
+}
+
+main > section > .container h2 {
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    color: var(--color-text);
+    margin: 0 0 16px;
+    font-weight: 700;
+}
+
+main > section > .container p {
+    font-size: 1.1rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.how-it-works {
+    margin-top: 48px;
+}
+
+.how-it-works__steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+    margin: 48px 0;
+}
+
+.step-card {
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 32px 24px;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.step-card:hover {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-md);
+}
+
+.step-card__number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 8px;
+}
+
+.step-card__icon {
+    font-size: 2rem;
+    margin-bottom: 16px;
+    color: var(--color-green);
+}
+
+.step-card h3 {
+    font-size: 1.25rem;
+    color: var(--color-text);
+    margin: 0 0 12px;
+    font-weight: 600;
+}
+
+.step-card p {
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.how-it-works__cta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--color-green-soft);
+    padding: 40px;
+    border-radius: var(--radius-lg);
+    margin-top: 48px;
+}
+
+.how-it-works__cta h3 {
+    font-size: 1.5rem;
+    color: var(--color-text);
+    margin: 0 0 8px;
+    font-weight: 700;
+}
+
+.how-it-works__cta p {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    margin: 0;
+}
+
+.how-it-works__button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    background: var(--color-primary);
+    color: var(--color-white);
+    text-decoration: none;
+    border-radius: 999px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.how-it-works__button:hover {
+    background: var(--color-primary-dark);
+}
+
+.campaign-create {
+    background: var(--color-background-soft);
+    padding: 80px 0;
+}
+
+.campaign-create__container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.campaign-create__header {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.campaign-create__header h1 {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    color: var(--color-text);
+    margin: 0 0 16px;
+    font-weight: 700;
+}
+
+.campaign-create__header p {
+    font-size: 1.1rem;
+    color: var(--color-text-secondary);
+    margin: 0;
+    line-height: 1.6;
+}
+
+.form-card {
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    padding: 40px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-sm);
+}
+
+.form-card__header {
+    margin-bottom: 32px;
+}
+
+.form-card__step {
+    display: inline-block;
+    padding: 6px 16px;
+    background: var(--color-green-soft);
+    color: var(--color-primary);
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.form-card__header h2 {
+    font-size: 1.75rem;
+    color: var(--color-text);
+    margin: 0 0 8px;
+    font-weight: 700;
+}
+
+.form-card__header p {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    margin: 0;
+    line-height: 1.5;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group--full {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 12px 16px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    background: var(--color-white);
+    color: var(--color-text);
+    font-family: var(--font-primary);
+    transition: all 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-green-soft);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.form-help {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin-top: 8px;
+}
+
+.input-with-suffix {
+    display: flex;
+    align-items: center;
+}
+
+.input-with-suffix input {
+    flex: 1;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.input-with-suffix span {
+    padding: 12px 16px;
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-left: none;
+    border-top-right-radius: var(--radius-md);
+    border-bottom-right-radius: var(--radius-md);
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.campaign-upload {
+    border: 2px dashed var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 48px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.campaign-upload:hover {
+    border-color: var(--color-primary);
+    background: var(--color-green-soft);
+}
+
+.campaign-upload__icon {
+    font-size: 3rem;
+    color: var(--color-primary);
+    margin-bottom: 16px;
+}
+
+.campaign-upload h3 {
+    font-size: 1.25rem;
+    color: var(--color-text);
+    margin: 0 0 8px;
+    font-weight: 600;
+}
+
+.campaign-upload p {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    margin: 0 0 24px;
+}
+
+.campaign-upload__button {
+    display: inline-block;
+    padding: 12px 24px;
+    background: var(--color-primary);
+    color: var(--color-white);
+    border-radius: 999px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.campaign-upload__button:hover {
+    background: var(--color-primary-dark);
+}
+
+.campaign-upload input {
+    display: none;
+}
+
+.campaign-upload__preview {
+    margin-top: 24px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.campaign-upload__preview img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.campaign-progress-info {
+    display: flex;
+    gap: 16px;
+    background: var(--color-blue-soft);
+    padding: 24px;
+    border-radius: var(--radius-md);
+    margin-top: 24px;
+}
+
+.campaign-progress-info__icon {
+    width: 40px;
+    height: 40px;
+    background: var(--color-blue);
+    color: var(--color-white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.campaign-progress-info h3 {
+    font-size: 1.1rem;
+    color: var(--color-text);
+    margin: 0 0 8px;
+    font-weight: 600;
+}
+
+.campaign-progress-info p {
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+    margin: 0;
+    line-height: 1.5;
+}
+
+.campaign-form__actions {
+    display: flex;
+    gap: 16px;
+    justify-content: flex-end;
+    margin-top: 32px;
+}
+
+.button {
+    padding: 14px 28px;
+    border: none;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-primary);
+}
+
+.button--secondary {
+    background: var(--color-background);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+}
+
+.button--secondary:hover {
+    background: var(--color-border);
+}
+
+.button--primary {
+    background: var(--color-primary);
+    color: var(--color-white);
+}
+
+.button--primary:hover {
+    background: var(--color-primary-dark);
+}
+
+.image-carousel {
+    overflow: hidden;
+    background: var(--color-background);
+    padding: 48px 0;
+}
+
+.carousel-track {
+    display: flex;
+    animation: scroll 30s linear infinite;
+}
+
+.carousel-item {
+    flex: 0 0 300px;
+    margin: 0 12px;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-300px * 7 - 84px));
+    }
+}
+
+@media (max-width: 768px) {
+    .head {
+        padding: 60px 20px;
+    }
+
+    .head h1 {
+        font-size: 2rem;
+    }
+
+    .head a {
+        display: block;
+        margin: 8px 0;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .how-it-works__cta {
+        flex-direction: column;
+        text-align: center;
+        gap: 24px;
+    }
+
+    .campaign-form__actions {
+        flex-direction: column;
+    }
+
+    .button {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .form-card {
+        padding: 24px;
+    }
+
+    .campaign-create {
+        padding: 48px 0;
+    }
+}
