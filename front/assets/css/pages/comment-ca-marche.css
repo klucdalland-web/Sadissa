@@ -1,12 +1,8 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> ff29463 (feat: update "Comment ça marche" page to align with design system)
+
 /* ==============================
    PAGE COMMENT ÇA MARCHE — SADISSA
    Alignée sur le design system de l'accueil
    ============================== */
-<<<<<<< HEAD
 
 
 /* ---------- Sections ---------- */
@@ -371,18 +367,6 @@
         width: 100%;
     }
 }
-=======
-/* Page « Comment ça marche » : toutes les classes sont préfixées cm- pour éviter les conflits */
-.cm {
-  --cm-vert: #0f5a38;
-  --cm-vert-clair: #1f7a4d;
-  --cm-menthe: #e8f3ec;
-  --cm-sable: #fdf6ec;
-  --cm-encre: #1c2a22;
-  --cm-gris: #5f6f66;
-  --cm-ligne: #e3ebe6;
-=======
->>>>>>> ff29463 (feat: update "Comment ça marche" page to align with design system)
 
 
 /* ---------- Sections ---------- */
@@ -681,9 +665,7 @@
     color: rgba(255, 255, 255, 0.85);
     line-height: 1.6;
 }
-<<<<<<< HEAD
->>>>>>> 5479493 (ajout)
-=======
+
 
 .cta-band__btn {
     background: var(--color-white);
