@@ -40,7 +40,12 @@ front/
 │   │   └── pages/
 │   │       ├── accueil.css
 │   │       ├── auth.css
-│   │       └── …
+│   │       ├── campagnes.css
+│   │       ├── campagne-detail.css
+│   │       ├── comment-ca-marche.css
+│   │       ├── creer-campagne.css
+│   │       ├── dashboard.css
+│   │       └── lancer-projet.css
 │   ├── js/
 │   │   ├── main.js                 → header + footer
 │   │   ├── api/
@@ -51,9 +56,16 @@ front/
 │   │   │   ├── footer.js
 │   │   │   └── campaign-card.js
 │   │   └── pages/
+│   │       ├── accueil.js
 │   │       ├── login.js
 │   │       ├── register.js
-│   │       └── auth-form.js
+│   │       ├── auth-form.js
+│   │       ├── campagnes.js
+│   │       ├── campagne-detail.js
+│   │       ├── comment-ca-marche.js
+│   │       ├── creer-campagne.js
+│   │       ├── dashboard.js
+│   │       └── lancer-projet.js
 │   └── img/
 └── README.md
 ```
